@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+/* ===========================================================
+   Cellexa Labs — Navy & Porcelain Clinical Design System
+   -----------------------------------------------------------
+   Theme tokens keep their original names (plum / rosegold) for
+   compatibility, but their VALUES are re-skinned to the brand:
+   • "plum"     → brand navy  (logo "C" + wordmark)
+   • "rosegold" → steel blue  (accents, rules, highlights)
+   =========================================================== */
+
+@theme {
+  /* Core surfaces */
+  --color-background: #ffffff;
+  --color-foreground: #14203a;
+
+  /* Brand — navy (maps onto former "plum") */
+  --color-plum: #2b4373;
+  --color-plum-deep: #1e3054;
+  --color-plum-ink: #101a30;
+
+  /* Brand — steel blue accent (maps onto former "rosegold") */
+  --color-rosegold: #7a93be;
+  --color-rosegold-deep: #52709f;
+  --color-rosegold-soft: #c9d6e9;
+
+  /* Neutrals — cool porcelain */
+  --color-blush: #f7f9fc;
+  --color-blush-deep: #edf1f8;
+  --color-mist: #f5f6f8;
+  --color-line: #dde3ee;
+  --color-ink: #14203a;
+  --color-ink-soft: #6a7488;
+
+  /* Dark surfaces */
+  --color-charcoal: #1e3054;
+  --color-charcoal-soft: #2b4373;
+  --color-navy: #101a30;
+
+  /* Category cap indicators — cool clinical palette */
+  --color-cap-mint: #4f8a86;     /* teal       — Recovery */
+  --color-cap-lavender: #2b4373; /* navy       — Growth */
+  --color-cap-gold: #52709f;     /* steel blue — Weight Loss */
+  --color-cap-peach: #78839a;    /* slate      — Wellness */
+  --color-cap-rose: #9db2d4;     /* pale blue  — Anti-Aging */
+
+  /* Feedback */
+  --color-instock: #5ba37e;
+
+  /* Fonts */
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Radii */
+  --radius-card: 14px;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.5s ease both;
+  --animate-slide-up: slide-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drawer-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes scrim-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ----------------------------------------------------------- */
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-rosegold-soft);
+  color: var(--color-plum-deep);
+}
+
+/* Refined scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 9999px;
+  border: 2px solid var(--color-background);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-rosegold-soft); }
+
+/* Display heading helper */
+.font-display {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Eyebrow / tracked-out small caps */
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+/* Steel-blue gradient text (logo style) */
+.text-rosegold-gradient {
+  background: linear-gradient(100deg, #3d5a8a 0%, #52709f 32%, #9db2d4 58%, #3d5a8a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-brand-gradient {
+  background: linear-gradient(100deg, var(--color-plum) 0%, var(--color-rosegold-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Primary button — navy → gold */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(105deg, var(--color-plum) 0%, var(--color-rosegold-deep) 135%);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: 9999px;
+  padding: 0.85rem 1.9rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  box-shadow: 0 10px 26px -12px rgba(27, 36, 71, 0.55);
+}
+.btn-primary:hover { transform: translateY(-1px); filter: brightness(1.06); box-shadow: 0 16px 32px -14px rgba(27, 36, 71, 0.6); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-line);
+  color: var(--color-plum-deep);
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.8rem 1.7rem;
+  background: #fff;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+.btn-ghost:hover { border-color: var(--color-rosegold); background: var(--color-blush); transform: translateY(-1px); }
+
+/* Card surface */
+.surface-card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+/* Card radius token as a standalone utility */
+.rounded-card {
+  border-radius: var(--radius-card);
+}
+
+/* Form fields */
+.input {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.input::placeholder { color: var(--color-ink-soft); }
+.input:focus {
+  outline: none;
+  border-color: var(--color-rosegold);
+  box-shadow: 0 0 0 3px rgba(122, 147, 190, 0.28);
+}
+
+/* Numeric fields: drop the native spinner so it can't collide with a unit
+   label or nudge the value on an accidental scroll. */
+.input-number {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.input-number::-webkit-outer-spin-button,
+.input-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Small segmented unit switch used by the reconstitution calculator */
+.unit-switch {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 9999px;
+  background: var(--color-blush-deep);
+}
+.unit-switch button {
+  border-radius: 9999px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-soft);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.unit-switch button:hover { color: var(--color-plum); }
+.unit-switch button[aria-pressed="true"] {
+  background: #fff;
+  color: var(--color-plum);
+  box-shadow: 0 1px 2px rgba(16, 26, 48, 0.12);
+}
+
+/* Hairline divider with diamond */
+.lux-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--color-rosegold);
+}
+.lux-rule::before,
+.lux-rule::after {
+  content: "";
+  height: 1px;
+  width: 2.5rem;
+  background: var(--color-rosegold-soft);
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Range slider styling */
+input[type="range"].lux-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-blush-deep);
+  outline: none;
+}
+input[type="range"].lux-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-plum), var(--color-rosegold-deep));
+  cursor: pointer;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(27, 36, 71, 0.35);
+}
+input[type="range"].lux-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-plum);
+  cursor: pointer;
+  border: 3px solid #fff;
+}
