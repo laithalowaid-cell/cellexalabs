@@ -34,7 +34,7 @@ export const BUNDLES: Bundle[] = [
     id: "starter-weight-loss",
     name: "Starter Weight Loss Bundle",
     glyph: "🔥",
-    price: 749,
+    price: 900,
     blurb: "Ideal for first-time users starting their weight loss journey.",
     items: [{ productId: "retatrutide", variantLabel: "20 mg" }],
     extras: ["Full Dosing Guide", "WhatsApp Support"],
@@ -43,7 +43,7 @@ export const BUNDLES: Bundle[] = [
     id: "shred-stack",
     name: "Shred Stack",
     glyph: "⭐",
-    price: 1699,
+    price: 2150,
     badge: "Most Popular",
     blurb: "For enhanced fat loss and body recomposition.",
     items: [
@@ -57,7 +57,7 @@ export const BUNDLES: Bundle[] = [
     id: "ultimate-transformation",
     name: "Ultimate Transformation Stack",
     glyph: "👑",
-    price: 2699,
+    price: 3300,
     badge: "Best Value",
     blurb: "Designed for customers looking for maximum results.",
     items: [
@@ -72,7 +72,7 @@ export const BUNDLES: Bundle[] = [
     id: "glow-up",
     name: "Glow Up Bundle",
     glyph: "✨",
-    price: 1499,
+    price: 1550,
     blurb: "Supports skin quality, recovery, and overall wellness.",
     items: [
       { productId: "glow", variantLabel: "70 mg" },
@@ -84,7 +84,7 @@ export const BUNDLES: Bundle[] = [
     id: "recovery",
     name: "Recovery Bundle",
     glyph: "🩹",
-    price: 1399,
+    price: 1300,
     blurb: "Popular with active individuals focused on recovery.",
     items: [
       { productId: "wolverine", variantLabel: "20 mg" },
@@ -96,7 +96,7 @@ export const BUNDLES: Bundle[] = [
     id: "focus",
     name: "Focus Bundle",
     glyph: "🧠",
-    price: 1249,
+    price: 1350,
     blurb: "Supports focus, productivity, and mental performance.",
     items: [
       { productId: "semax", variantLabel: "10 mg" },
@@ -108,7 +108,7 @@ export const BUNDLES: Bundle[] = [
     id: "vip-transformation",
     name: "VIP Transformation Package",
     glyph: "💎",
-    price: 3499,
+    price: 4150,
     badge: "VIP Package",
     blurb: "Complete premium transformation package.",
     items: [

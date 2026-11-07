@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
         destination: "/shop",
         permanent: true,
       },
+      // SLU-PP-223 was a typo — the product is SLU-PP-332.
+      {
+        source: "/shop/slu-pp-223",
+        destination: "/shop/slu-pp-332",
+        permanent: true,
+      },
     ];
   },
 };
