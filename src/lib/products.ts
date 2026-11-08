@@ -204,9 +204,9 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "Tesamorelin, 99.6% purity, for laboratory research use. A synthetic GHRH-analogue peptide investigated in animal models for growth-hormone-axis signalling.",
     variants: [
-      { label: "10 mg", mg: 10, price: 800 },
+      { label: "10 mg", mg: 10, price: 800, image: "/products/tesamorelin-10mg.png" },
       { label: "20 mg", mg: 20, price: 900, image: "/products/tesamorelin-20mg.png" },
-      { label: "30 mg", mg: 30, price: 1050 },
+      { label: "30 mg", mg: 30, price: 1050, image: "/products/tesamorelin-30mg.png" },
       { label: "40 mg", mg: 40, price: 1250, image: "/products/tesamorelin-40mg.png" },
     ],
     molecular: { formula: "C221H366N72O67S", weight: "5135.9 g/mol", cas: "218949-48-5" },
@@ -343,7 +343,7 @@ export const PRODUCTS: Product[] = [
     variants: [
       { label: "10 mg", mg: 10, price: 700, image: "/products/wolverine-10mg.png" },
       { label: "20 mg", mg: 20, price: 800, image: "/products/wolverine-20mg.png" },
-      { label: "40 mg", mg: 40, price: 1200 },
+      { label: "40 mg", mg: 40, price: 1200, image: "/products/wolverine-40mg.png" },
     ],
     molecular: { cas: "137525-51-0 / 77591-33-4" },
     purity: "99%+",
@@ -395,8 +395,8 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "SLU-PP-332, 99% purity, for laboratory research use. A synthetic small molecule investigated in vitro for pan-agonist activity at estrogen-related receptors (ERR-alpha / beta / gamma).",
     variants: [
-      { label: "10 mg", mg: 10, price: 800 },
-      { label: "20 mg", mg: 20, price: 1000 },
+      { label: "10 mg", mg: 10, price: 800, image: "/products/slu-pp-332-10mg.png" },
+      { label: "20 mg", mg: 20, price: 1000, image: "/products/slu-pp-332-20mg.png" },
     ],
     molecular: {},
     purity: "99%+",
@@ -413,10 +413,10 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "MOTS-C, 99.9% purity, for laboratory research use. A mitochondrial-derived peptide studied in vitro and in animal models for its role in AMPK-pathway and metabolic signalling.",
     variants: [
-      { label: "10 mg", mg: 10, price: 800 },
+      { label: "10 mg", mg: 10, price: 800, image: "/products/mots-c-10mg.png" },
       { label: "20 mg", mg: 20, price: 950, image: "/products/mots-c-20mg.png" },
       { label: "40 mg", mg: 40, price: 1100, image: "/products/mots-c-40mg.png" },
-      { label: "80 mg", mg: 80, price: 1400 },
+      { label: "80 mg", mg: 80, price: 1400, image: "/products/mots-c-80mg.png" },
     ],
     molecular: { sequence: "MRWQEMGYIFYPRKLR", formula: "C101H152N28O22S2", weight: "2174.6 g/mol", cas: "1627580-64-6" },
     purity: "99.9%",
@@ -434,7 +434,7 @@ export const PRODUCTS: Product[] = [
       "Selank, 99% purity, for laboratory research use. A synthetic heptapeptide analogue of tuftsin investigated in animal models for GABAergic and BDNF-related signalling.",
     variants: [
       { label: "10 mg", mg: 10, price: 750, image: "/products/selank-10mg.png" },
-      { label: "20 mg", mg: 20, price: 950 },
+      { label: "20 mg", mg: 20, price: 950, image: "/products/selank-20mg.png" },
     ],
     molecular: { sequence: "Thr-Lys-Pro-Arg-Pro-Gly-Pro", formula: "C33H57N11O9", weight: "751.9 g/mol", cas: "129954-34-3" },
     purity: "99%+",
@@ -451,7 +451,7 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "DSIP, 99% purity, for laboratory research use. A naturally occurring nonapeptide investigated in animal models for sleep-architecture and neuroendocrine signalling.",
     variants: [
-      { label: "5 mg", mg: 5, price: 800 },
+      { label: "5 mg", mg: 5, price: 800, image: "/products/dsip-5mg.png" },
       { label: "10 mg", mg: 10, price: 900, image: "/products/dsip-10mg.png" },
     ],
     molecular: { sequence: "Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu", formula: "C35H48N10O15", weight: "848.8 g/mol", cas: "62568-57-4" },
@@ -469,7 +469,7 @@ export const PRODUCTS: Product[] = [
       "Semax, 99% purity, for laboratory research use. A synthetic ACTH(4-10)-analogue heptapeptide studied in vitro and in animal models for BDNF expression and neurotrophic signalling.",
     variants: [
       { label: "10 mg", mg: 10, price: 750, image: "/products/semax-10mg.png" },
-      { label: "20 mg", mg: 20, price: 950 },
+      { label: "20 mg", mg: 20, price: 950, image: "/products/semax-20mg.png" },
     ],
     molecular: { sequence: "Met-Glu-His-Phe-Pro-Gly-Pro", formula: "C37H51N9O10S", weight: "813.9 g/mol", cas: "80714-61-0" },
     purity: "99%+",
@@ -487,7 +487,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "Cagrilintide, 99% purity, for laboratory research use. A long-acting acylated amylin-analogue peptide investigated in vitro and in animal models for amylin- and calcitonin-receptor activity.",
-    variants: [{ label: "10 mg", mg: 10, price: 1000 }],
+    variants: [{ label: "10 mg", mg: 10, price: 1000, image: "/products/cagrilintide-10mg.png" }],
     molecular: { cas: "1415456-99-3" },
     purity: "99%+",
   },
@@ -502,7 +502,7 @@ export const PRODUCTS: Product[] = [
     category: "research compound",
     mechanism:
       "5-Amino-1MQ, 99% purity, for laboratory research use. A small-molecule methylquinolinium compound investigated in vitro and in animal models for inhibition of nicotinamide N-methyltransferase (NNMT).",
-    variants: [{ label: "100 mg", mg: 100, price: 1050 }],
+    variants: [{ label: "100 mg", mg: 100, price: 1050, image: "/products/5-amino-1mq-100mg.png" }],
     molecular: {},
     purity: "99%+",
   },
@@ -517,7 +517,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "HGH Fragment 176-191, 99% purity, for laboratory research use. A synthetic C-terminal fragment of human growth hormone investigated in vitro and in animal models for lipolytic-pathway signalling.",
-    variants: [{ label: "10 mg", mg: 10, price: 1000 }],
+    variants: [{ label: "10 mg", mg: 10, price: 1000, image: "/products/hgh-frag-10mg.png" }],
     molecular: {},
     purity: "99%+",
   },
@@ -532,7 +532,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "AHK-Cu, 99% purity, for laboratory research use. A copper-binding tripeptide investigated in vitro for its role in dermal-papilla and extracellular-matrix signalling.",
-    variants: [{ label: "100 mg", mg: 100, price: 1000 }],
+    variants: [{ label: "100 mg", mg: 100, price: 1000, image: "/products/ahk-cu-100mg.png" }],
     molecular: { sequence: "Ala-His-Lys (Cu²⁺)" },
     purity: "99%+",
   },
@@ -547,7 +547,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "Matrixyl (Palmitoyl Pentapeptide-4), 99% purity, for laboratory research use. A palmitoylated matrikine pentapeptide studied in vitro for collagen and extracellular-matrix synthesis.",
-    variants: [{ label: "10 mg", mg: 10, price: 900 }],
+    variants: [{ label: "10 mg", mg: 10, price: 900, image: "/products/matrixyl-10mg.png" }],
     molecular: { sequence: "Pal-Lys-Thr-Thr-Lys-Ser", cas: "214047-00-4" },
     purity: "99%+",
   },
@@ -562,7 +562,7 @@ export const PRODUCTS: Product[] = [
     category: "research compound",
     mechanism:
       "Glutathione, 99% purity, for laboratory research use. An endogenous tripeptide thiol studied in vitro for its role in cellular redox balance and detoxification pathways.",
-    variants: [{ label: "1500 mg", mg: 1500, price: 900 }],
+    variants: [{ label: "1500 mg", mg: 1500, price: 900, image: "/products/glutathione-1500mg.png" }],
     molecular: { sequence: "γ-Glu-Cys-Gly", formula: "C10H17N3O6S", weight: "307.3 g/mol", cas: "70-18-8" },
     purity: "99%+",
   },
@@ -578,8 +578,8 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "Epitalon, 99% purity, for laboratory research use. A synthetic tetrapeptide investigated in vitro and in animal models for telomerase activity and pineal-gland signalling.",
     variants: [
-      { label: "25 mg", mg: 25, price: 900 },
-      { label: "50 mg", mg: 50, price: 1000 },
+      { label: "25 mg", mg: 25, price: 900, image: "/products/epitalon-25mg.png" },
+      { label: "50 mg", mg: 50, price: 1000, image: "/products/epitalon-50mg.png" },
     ],
     molecular: { sequence: "Ala-Glu-Asp-Gly", formula: "C14H22N4O9", weight: "390.3 g/mol", cas: "307297-39-8" },
     purity: "99%+",
@@ -594,7 +594,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "Pinealon, 99% purity, for laboratory research use. A synthetic short tripeptide investigated in vitro and in animal models for neuroprotective and gene-expression signalling.",
-    variants: [{ label: "20 mg", mg: 20, price: 1000 }],
+    variants: [{ label: "20 mg", mg: 20, price: 1000, image: "/products/pinealon-20mg.png" }],
     molecular: { sequence: "Glu-Asp-Arg" },
     purity: "99%+",
   },
@@ -609,7 +609,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "ARA-290 (Cibinetide), 99% purity, for laboratory research use. A synthetic peptide derived from erythropoietin, investigated in vitro and in animal models for innate-repair-receptor signalling.",
-    variants: [{ label: "10 mg", mg: 10, price: 900 }],
+    variants: [{ label: "10 mg", mg: 10, price: 900, image: "/products/ara-290-10mg.png" }],
     molecular: {},
     purity: "99%+",
   },
@@ -624,7 +624,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "Thymosin Alpha-1, 99% purity, for laboratory research use. A synthetic thymic peptide investigated in vitro for its role in T-cell and immune-signalling pathways.",
-    variants: [{ label: "10 mg", mg: 10, price: 1000 }],
+    variants: [{ label: "10 mg", mg: 10, price: 1000, image: "/products/thymosin-alpha-1-10mg.png" }],
     molecular: { cas: "62304-98-7" },
     purity: "99%+",
   },
@@ -639,7 +639,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "SS-31 (Elamipretide), 99% purity, for laboratory research use. A mitochondria-targeted tetrapeptide studied in vitro for its interaction with cardiolipin and mitochondrial bioenergetics.",
-    variants: [{ label: "50 mg", mg: 50, price: 1200 }],
+    variants: [{ label: "50 mg", mg: 50, price: 1200, image: "/products/ss-31-50mg.png" }],
     molecular: { sequence: "D-Arg-Dmt-Lys-Phe-NH2", cas: "736992-21-5" },
     purity: "99%+",
   },
@@ -654,7 +654,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "KPV, 99% purity, for laboratory research use. A C-terminal tripeptide fragment of α-MSH investigated in vitro for its role in inflammatory-signalling pathways.",
-    variants: [{ label: "10 mg", mg: 10, price: 650 }],
+    variants: [{ label: "10 mg", mg: 10, price: 650, image: "/products/kpv-10mg.png" }],
     molecular: { sequence: "Lys-Pro-Val" },
     purity: "99%+",
   },
@@ -669,7 +669,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "VIP (Vasoactive Intestinal Peptide), 99% purity, for laboratory research use. A 28-amino-acid neuropeptide studied in vitro for VPAC-receptor signalling.",
-    variants: [{ label: "10 mg", mg: 10, price: 900 }],
+    variants: [{ label: "10 mg", mg: 10, price: 900, image: "/products/vip-10mg.png" }],
     molecular: { cas: "40077-57-4" },
     purity: "99%+",
   },
@@ -683,7 +683,7 @@ export const PRODUCTS: Product[] = [
     category: "research compound",
     mechanism:
       "Dihexa, 99% purity, for laboratory research use. An angiotensin IV-derived compound investigated in vitro and in animal models for HGF / c-Met signalling and synaptogenesis.",
-    variants: [{ label: "10 mg", mg: 10, price: 1000 }],
+    variants: [{ label: "10 mg", mg: 10, price: 1000, image: "/products/dihexa-10mg.png" }],
     molecular: { cas: "1401708-83-5" },
     purity: "99%+",
   },
@@ -698,7 +698,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "Snap-8 (Acetyl Octapeptide-3), 99% purity, for laboratory research use. A synthetic octapeptide modelled on the SNAP-25 N-terminus, studied in vitro for SNARE-complex modulation.",
-    variants: [{ label: "10 mg", mg: 10, price: 1000 }],
+    variants: [{ label: "10 mg", mg: 10, price: 1000, image: "/products/snap-8-10mg.png" }],
     molecular: { sequence: "Ac-Glu-Glu-Met-Gln-Arg-Arg-Ala-Asp-NH2" },
     purity: "99%+",
   },
