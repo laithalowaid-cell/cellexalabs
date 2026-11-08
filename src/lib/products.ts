@@ -169,8 +169,8 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "CJC-1295 No DAC, 99% purity, for laboratory research use. A synthetic GHRH-analogue peptide investigated in vitro for growth-hormone-releasing-hormone receptor signalling.",
     variants: [
-      { label: "10 mg", mg: 10, price: 649, image: "/products/cjc-1295-10mg.png" },
-      { label: "20 mg", mg: 20, price: 799, image: "/products/cjc-1295-20mg.png" },
+      { label: "10 mg", mg: 10, price: 749, image: "/products/cjc-1295-10mg.png" },
+      { label: "20 mg", mg: 20, price: 899, image: "/products/cjc-1295-20mg.png" },
     ],
     molecular: { formula: "C152H252N44O42", weight: "3367.9 g/mol", cas: "863288-34-0" },
     purity: "99%+",
@@ -186,9 +186,9 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "Ipamorelin, 99% purity, for laboratory research use. A synthetic pentapeptide studied in vitro for selective agonist activity at the ghrelin / GH-secretagogue receptor.",
     variants: [
-      { label: "10 mg", mg: 10, price: 749, image: "/products/ipamorelin-10mg.png" },
-      { label: "20 mg", mg: 20, price: 849, image: "/products/ipamorelin-20mg.png" },
-      { label: "30 mg", mg: 30, price: 949, image: "/products/ipamorelin-30mg.png" },
+      { label: "10 mg", mg: 10, price: 849, image: "/products/ipamorelin-10mg.png" },
+      { label: "20 mg", mg: 20, price: 949, image: "/products/ipamorelin-20mg.png" },
+      { label: "30 mg", mg: 30, price: 1049, image: "/products/ipamorelin-30mg.png" },
     ],
     molecular: { sequence: "Aib-His-D-2-Nal-D-Phe-Lys-NH2", formula: "C38H49N9O5", weight: "711.85 g/mol", cas: "170851-70-4" },
     purity: "99%+",
@@ -306,7 +306,7 @@ export const PRODUCTS: Product[] = [
     category: "peptides",
     mechanism:
       "BPC-157, 99.3% purity, for laboratory research use. A synthetic pentadecapeptide investigated in vitro and in animal models for its role in angiogenesis and fibroblast migration.",
-    variants: [{ label: "10 mg", mg: 10, price: 649, image: "/products/bpc-157-10mg.png" }],
+    variants: [{ label: "10 mg", mg: 10, price: 749, image: "/products/bpc-157-10mg.png" }],
     molecular: { sequence: "GEPPPGKPADDAGLV", formula: "C62H98N16O22", weight: "1419.5 g/mol", cas: "137525-51-0" },
     purity: "99.3%",
     featured: true,
@@ -360,8 +360,8 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "PT-141 (Bremelanotide), 99% purity, for laboratory research use. A cyclic heptapeptide studied in animal models for its role in melanocortin-receptor signalling.",
     variants: [
-      { label: "10 mg", mg: 10, price: 649, image: "/products/pt-141-10mg.png" },
-      { label: "40 mg", mg: 40, price: 1049, image: "/products/pt-141-40mg.png" },
+      { label: "10 mg", mg: 10, price: 749, image: "/products/pt-141-10mg.png" },
+      { label: "40 mg", mg: 40, price: 1149, image: "/products/pt-141-40mg.png" },
     ],
     molecular: { sequence: "Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-OH", formula: "C50H68N14O10", weight: "1025.2 g/mol", cas: "189691-06-3" },
     purity: "99%+",

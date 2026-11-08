@@ -84,7 +84,7 @@ export const BUNDLES: Bundle[] = [
     id: "recovery",
     name: "Recovery Bundle",
     glyph: "🩹",
-    price: 1300,
+    price: 1400,
     blurb: "Popular with active individuals focused on recovery.",
     items: [
       { productId: "wolverine", variantLabel: "20 mg" },
