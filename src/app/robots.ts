@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
       // Order handoff endpoint — no crawl value.
-      disallow: ["/api/"],
+      disallow: ["/api/", "/admin/"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };

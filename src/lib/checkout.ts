@@ -1,6 +1,7 @@
 // Checkout details collected before the order is handed to WhatsApp.
-// Nothing is sent to a server — the values are written into the message the
-// customer sends from their own WhatsApp account.
+// They are written into the message the customer sends from their own
+// WhatsApp account, and a copy of the order is saved through /api/orders so
+// it shows on the private orders page.
 
 export const EMIRATES = [
   "Abu Dhabi",
@@ -25,6 +26,7 @@ export const PAYMENT_METHODS = [
 
 export interface CheckoutDetails {
   name: string;
+  phone: string;
   emirate: string;
   address: string;
   payment: string;
@@ -32,6 +34,7 @@ export interface CheckoutDetails {
 
 export const EMPTY_DETAILS: CheckoutDetails = {
   name: "",
+  phone: "",
   emirate: "",
   address: "",
   payment: "",
@@ -44,6 +47,10 @@ export function validateCheckout(d: CheckoutDetails): CheckoutErrors {
   const e: CheckoutErrors = {};
 
   if (d.name.trim().length < 2) e.name = "Please enter your full name.";
+
+  const digits = d.phone.replace(/\D/g, "");
+  if (digits.length < 9 || digits.length > 15)
+    e.phone = "Please enter a mobile number we can reach you on.";
 
   if (!EMIRATES.includes(d.emirate as (typeof EMIRATES)[number]))
     e.emirate = "Please select an emirate.";

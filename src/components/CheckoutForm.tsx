@@ -43,6 +43,24 @@ export default function CheckoutForm({
       </div>
 
       <div>
+        <label htmlFor="co-phone" className="mb-1.5 block text-xs font-medium text-ink-soft">
+          Mobile number
+        </label>
+        <input
+          id="co-phone"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          value={details.phone}
+          onChange={(e) => onChange({ phone: e.target.value })}
+          aria-invalid={Boolean(errors.phone)}
+          className="input"
+          placeholder="e.g. 050 123 4567"
+        />
+        {err(errors.phone)}
+      </div>
+
+      <div>
         <label htmlFor="co-emirate" className="mb-1.5 block text-xs font-medium text-ink-soft">
           Emirate
         </label>
@@ -116,8 +134,8 @@ export default function CheckoutForm({
       </fieldset>
 
       <p className="text-[0.7rem] leading-relaxed text-ink-soft">
-        These details are added to the WhatsApp message you send us — they are not
-        submitted to this website or stored on our servers.
+        These details are added to the WhatsApp message you send us, and saved with your
+        order so we can prepare and deliver it.
       </p>
     </div>
   );

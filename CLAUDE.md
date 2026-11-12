@@ -4,7 +4,9 @@
 
 Online shop for cellexalabs.com, selling to the UAE. Prices are in AED. Built with Next.js 16, React 19, TypeScript and Tailwind CSS 4.
 
-There is no database, admin panel, or online payment. Products and prices live in code. Customers fill a cart and checkout form, and the order opens as a WhatsApp message to the business. The cart is stored in the visitor's browser. No environment variables are required.
+There is no online payment. Products and prices live in code. Customers fill a cart and checkout form, and the order opens as a WhatsApp message to the business. The cart is stored in the visitor's browser.
+
+A copy of every order is also saved the moment the customer taps "Send Order on WhatsApp", and listed on the private, password-protected page `/admin/orders` (code in `src/lib/orders.ts`, `src/app/api/orders/`, `src/app/admin/orders/`). Orders live in a private Vercel Blob store; this needs the two environment variables in `.env.example`. Orders hold customer names, phones and addresses: never make the store or the feed public.
 
 ## Working with the owner
 
@@ -35,6 +37,7 @@ npm run lint
 | WhatsApp number | `src/lib/constants.ts` |
 | Payment options, emirates, checkout validation | `src/lib/checkout.ts` |
 | Order form | `src/components/CheckoutForm.tsx` |
+| Saved orders, order statuses, orders page | `src/lib/orders.ts`, `src/app/admin/orders/` |
 | Cart and order message | `src/components/CartDrawer.tsx`, `src/lib/store.tsx` |
 | Homepage | `src/app/page.tsx` |
 | Menu and footer | `src/components/Header.tsx`, `src/components/Footer.tsx` |

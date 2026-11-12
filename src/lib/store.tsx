@@ -179,6 +179,7 @@ export function buildWhatsAppOrder(
           "",
           "— Delivery details —",
           `Name: ${details.name.trim()}`,
+          `Mobile: ${details.phone.trim()}`,
           `Emirate: ${details.emirate}`,
           `Address: ${details.address.trim().replace(/\s*\n\s*/g, ", ")}`,
           `Payment: ${details.payment}`,

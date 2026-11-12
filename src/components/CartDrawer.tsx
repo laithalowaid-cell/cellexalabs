@@ -73,9 +73,11 @@ export default function CartDrawer() {
     // A real, unique reference for this order, sent in the WhatsApp message so
     // it can be reconciled. Cached per cart signature so that re-opening the
     // same cart quotes the same reference rather than minting a new one.
-    const signature = cart
-      .map((l) => `${l.productId}:${l.variantLabel}:${l.qty}`)
-      .join("|");
+    // Changed details mint a new reference, so a saved order is never altered.
+    const signature = [
+      ...cart.map((l) => `${l.productId}:${l.variantLabel}:${l.qty}`),
+      details.name, details.phone, details.emirate, details.address, details.payment,
+    ].join("|");
 
     let issued: Record<string, string> = {};
     try {
@@ -93,6 +95,23 @@ export default function CartDrawer() {
     try {
       issued[signature] = orderRef;
       sessionStorage.setItem("cl_order_refs", JSON.stringify(issued));
+    } catch {}
+
+    // Save a copy of the order for the orders page. Not awaited: WhatsApp must
+    // open straight from the tap, and a failed save must never block an order.
+    try {
+      fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+        body: JSON.stringify({
+          ref: orderRef,
+          details,
+          cart: cart.map(({ productId, name, variantLabel, unitPrice, qty }) => ({
+            productId, name, variantLabel, unitPrice, qty,
+          })),
+        }),
+      }).catch(() => {});
     } catch {}
 
     const url = buildWhatsAppOrder(cart, orderRef, details);
