@@ -575,3 +575,16 @@ html:not(.motion) .anatomy__part { grid-area: auto; }
 .star-pick span.is-on { color: var(--color-rosegold-deep); }
 .star-pick:focus-within { outline: 2px solid var(--color-rosegold-deep); outline-offset: 2px; border-radius: 6px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ===========================================================
+   Logo lockup (components/Logo.tsx)
+   =========================================================== */
+.logo-lockup { display: inline-flex; align-items: center; gap: 0.5em; line-height: 1; }
+.logo-lockup__word {
+  font-family: var(--font-serif); font-stretch: 122%; font-weight: 700;
+  font-size: 0.86em; letter-spacing: 0.09em; display: inline-flex; align-items: baseline; gap: 0.55em;
+}
+.logo-lockup__labs {
+  font-family: var(--font-mono); font-weight: 500; font-size: 0.5em; letter-spacing: 0.32em;
+  color: var(--color-rosegold-deep);
+}
