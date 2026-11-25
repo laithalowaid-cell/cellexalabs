@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { PRODUCTS, getProduct } from "@/lib/products";
 import ProductDetail from "@/components/ProductDetail";
-import ProductCard from "@/components/ProductCard";
+import RangeRow from "@/components/summit/RangeRow";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ id: p.id }));
@@ -75,15 +75,15 @@ export default async function ProductPage({
       <ProductDetail product={product} />
 
       {related.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-          <h2 className="font-display text-2xl font-medium text-plum-deep">
-            Related Compounds
+        <section className="mx-auto max-w-[1440px] overflow-x-clip px-4 pb-24 sm:px-10 xl:px-16" aria-labelledby="related-title">
+          <h2 id="related-title" className="display-xl text-[clamp(2.2rem,5.5vw,5rem)] text-plum-deep" data-split="lines">
+            Same research area
           </h2>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 border-t border-line">
             {related.map((p) => (
-              <ProductCard key={p.id} product={p} />
+              <RangeRow key={p.id} product={p} />
             ))}
-          </div>
+          </ul>
         </section>
       )}
     </>

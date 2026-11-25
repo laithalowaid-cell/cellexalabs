@@ -6,6 +6,7 @@ import { Product, fromPrice } from "@/lib/products";
 import { useStore } from "@/lib/store";
 import { VialThumb } from "./VialThumb";
 import { ProductImage } from "./ProductImage";
+import { cutout, cutoutSize } from "@/lib/pens";
 import { PlusIcon, CheckIcon, PenIcon, VialIcon } from "./icons";
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -33,27 +34,35 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/shop/${product.id}`}
-      className="group surface-card relative flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-rosegold-soft hover:shadow-[0_24px_48px_-24px_rgba(122,46,85,0.4)]"
+      className="product-card group relative flex flex-col overflow-hidden"
     >
-      {/* cap accent line */}
-      <span className="absolute inset-x-0 top-0 h-1" style={{ background: product.cap }} />
-
       {/* Thumb */}
-      <div className="relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br from-blush/70 via-white to-blush-deep/40">
+      <div className="product-card__stage relative flex h-48 items-center justify-center overflow-hidden">
         {product.form === "vial" && !repImage ? (
           <div className="transition-transform duration-500 group-hover:scale-110">
             <VialThumb cap={product.cap} form={product.form} size={92} />
           </div>
         ) : (
-          <div className="flex h-full w-full items-center justify-center p-2 transition-transform duration-500 ease-out group-hover:scale-[1.05]">
-            <ProductImage
-              src={repImage}
-              name={product.name}
-              accent={product.cap}
-              penWidth={430}
-              penClassName="rotate-[-15deg]"
-              imgClassName="max-h-full w-auto object-contain"
-            />
+          <div className="product-card__media flex h-full w-full items-center justify-center p-3">
+            {cutout(repImage) ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={cutout(repImage)}
+                alt={`${product.name} ${product.form === "vial" ? "vial" : "pre-filled pen"}`}
+                loading="lazy"
+                {...cutoutSize(cutout(repImage))}
+                className={product.form === "vial" ? "max-h-full w-auto object-contain" : "w-[118%] max-w-none -rotate-[8deg]"}
+              />
+            ) : (
+              <ProductImage
+                src={repImage}
+                name={product.name}
+                accent={product.cap}
+                penWidth={430}
+                penClassName="rotate-[-8deg]"
+                imgClassName="max-h-full w-auto object-contain mix-blend-multiply"
+              />
+            )}
           </div>
         )}
         <span className="absolute right-3 top-3 flex items-center gap-1 rounded-full border border-line bg-white/80 px-2 py-0.5 text-[0.62rem] font-medium text-ink-soft backdrop-blur">

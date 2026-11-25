@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { useStore } from "@/lib/store";
 import { FOCUS_META, Focus } from "@/lib/products";
@@ -15,6 +16,8 @@ export default function Header() {
   const [catOpen, setCatOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const catRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const current = (href: string) => (pathname === href ? "page" : undefined);
 
   useEffect(() => {
     function onClick(e: MouseEvent) {
@@ -28,20 +31,20 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="shrink-0">
+        <Link href="/" className="shrink-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-x-1" aria-label="Cellexa Labs home">
           <Logo size={24} />
         </Link>
 
         {/* Desktop nav */}
         <nav className="ml-4 hidden items-center gap-1 lg:flex">
-          <Link href="/shop" className="nav-link rounded-full px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-plum">
+          <Link href="/shop" aria-current={current("/shop")} className="nav-link link-glide mx-3 py-1 text-sm font-medium text-ink transition-colors hover:text-rosegold-deep">
             Shop All
           </Link>
 
           <div ref={catRef} className="relative">
             <button
               onClick={() => setCatOpen((o) => !o)}
-              className="flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-plum"
+              className="link-glide mx-3 flex items-center gap-1 py-1 text-sm font-medium text-ink transition-colors hover:text-rosegold-deep"
             >
               Categories
               <ChevronDown width={15} height={15} className={catOpen ? "rotate-180 transition" : "transition"} />
@@ -72,13 +75,13 @@ export default function Header() {
             )}
           </div>
 
-          <Link href="/bundles" className="nav-link rounded-full px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-plum">
+          <Link href="/bundles" aria-current={current("/bundles")} className="nav-link link-glide mx-3 py-1 text-sm font-medium text-ink transition-colors hover:text-rosegold-deep">
             Bundles
           </Link>
-          <Link href="/calculator" className="nav-link rounded-full px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-plum">
+          <Link href="/calculator" aria-current={current("/calculator")} className="nav-link link-glide mx-3 py-1 text-sm font-medium text-ink transition-colors hover:text-rosegold-deep">
             Calculator
           </Link>
-          <Link href="/affiliates" className="nav-link rounded-full px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-plum">
+          <Link href="/affiliates" aria-current={current("/affiliates")} className="nav-link link-glide mx-3 py-1 text-sm font-medium text-ink transition-colors hover:text-rosegold-deep">
             Affiliates
           </Link>
         </nav>
@@ -90,10 +93,10 @@ export default function Header() {
           </div>
           <button
             onClick={() => setCartOpen(true)}
-            className="relative flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-blush"
+            className="group relative flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-blush"
             aria-label="Open cart"
           >
-            <CartIcon width={21} height={21} />
+            <CartIcon width={21} height={21} className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-rotate-6" />
             {cartCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-plum px-1 text-[0.65rem] font-bold text-white">
                 {cartCount}

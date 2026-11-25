@@ -19,13 +19,13 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="eyebrow text-plum-deep">Categories</h4>
+          <h2 className="eyebrow text-plum-deep">Categories</h2>
           <ul className="mt-4 space-y-2.5">
             {FOCUS_KEYS.map((k) => (
               <li key={k}>
                 <Link
                   href={`/shop?focus=${k}`}
-                  className="text-sm text-ink-soft transition-colors hover:text-plum"
+                  className="inline-block py-1.5 text-sm text-ink-soft transition-colors hover:text-plum"
                 >
                   {FOCUS_META[k].short}
                 </Link>
@@ -35,18 +35,18 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="eyebrow text-plum-deep">Explore</h4>
+          <h2 className="eyebrow text-plum-deep">Explore</h2>
           <ul className="mt-4 space-y-2.5">
-            <li><Link href="/shop" className="text-sm text-ink-soft hover:text-plum">Shop All</Link></li>
-            <li><Link href="/bundles" className="text-sm text-ink-soft hover:text-plum">Bundle Deals</Link></li>
-            <li><Link href="/calculator" className="text-sm text-ink-soft hover:text-plum">Dosing Calculator</Link></li>
-            <li><Link href="/about" className="text-sm text-ink-soft hover:text-plum">About &amp; Research Use</Link></li>
-            <li><Link href="/affiliates" className="text-sm text-ink-soft hover:text-plum">Affiliate Program</Link></li>
+            <li><Link href="/shop" className="inline-block py-1.5 text-sm text-ink-soft hover:text-plum">Shop All</Link></li>
+            <li><Link href="/bundles" className="inline-block py-1.5 text-sm text-ink-soft hover:text-plum">Bundle Deals</Link></li>
+            <li><Link href="/calculator" className="inline-block py-1.5 text-sm text-ink-soft hover:text-plum">Dosing Calculator</Link></li>
+            <li><Link href="/about" className="inline-block py-1.5 text-sm text-ink-soft hover:text-plum">About &amp; Research Use</Link></li>
+            <li><Link href="/affiliates" className="inline-block py-1.5 text-sm text-ink-soft hover:text-plum">Affiliate Program</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="eyebrow text-plum-deep">Order & Enquiries</h4>
+          <h2 className="eyebrow text-plum-deep">Order & Enquiries</h2>
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
@@ -73,7 +73,7 @@ export default function Footer() {
           <p className="mt-2 text-center text-[0.7rem] leading-relaxed text-ink-soft">
             Shipped from the United Arab Emirates.
           </p>
-          <p className="mt-4 text-center text-xs text-ink-soft/70">
+          <p className="mt-4 text-center text-xs text-ink-soft">
             © {new Date().getFullYear()} Cellexa Labs · Premium Research Peptides · UAE.
             {" · "}
             <Link

@@ -1,272 +1,166 @@
 import Link from "next/link";
-import { PRODUCTS, FOCUS_META, Focus, Form, fromPrice } from "@/lib/products";
+import { PRODUCTS, FOCUS_META, Focus, fromPrice, formatPrice } from "@/lib/products";
 import { BUNDLES } from "@/lib/bundles";
-import ProductCard from "@/components/ProductCard";
+import { cutout, cutoutSize, heroImage } from "@/lib/pens";
 import BundleCard from "@/components/BundleCard";
-import TrustBar from "@/components/TrustBar";
-import IceShowcase, { IceScene } from "@/components/IceShowcase";
+import SummitHero from "@/components/summit/SummitHero";
+import PenAnatomy from "@/components/summit/PenAnatomy";
+import PenRange from "@/components/summit/PenRange";
+import Snowfall from "@/components/summit/Snowfall";
 import { ArrowRight } from "@/components/icons";
-import { DnaMark } from "@/components/Logo";
 
-const FORMAT_CARDS: {
-  form: Form;
-  title: string;
-  meta: string;
-  blurb: string;
-  image: string;
-  /** Pens are a long landscape render, so they sit on a diagonal to fill the slot. */
-  imageClass: string;
-}[] = [
-  {
-    form: "vial",
-    title: "Vials",
-    meta: "lyophilised",
-    blurb: "Reconstitute and draw exactly what your protocol calls for.",
-    image: "/products/ghk-cu-vial-100mg.png",
-    imageClass: "scale-95",
-  },
-  {
-    form: "pen",
-    title: "Pens",
-    meta: "pre-filled",
-    blurb: "Reconstituted and pre-filled. No mixing, no draw-up, dial by clicks.",
-    image: "/products/retatrutide-60mg.png",
-    imageClass: "-rotate-[38deg] scale-[1.55]",
-  },
-];
+/** The pen in the hero. Name, dose and price come from products.ts. */
+const HERO_PEN_ID = "retatrutide";
+const HERO_PEN_DOSE = "30 mg";
+/** The pen shown close up in "Anatomy of a pen". */
+const ANATOMY_PEN_ID = "retatrutide";
+const ANATOMY_PEN_DOSE = "30 mg";
+/** Vials with clean cut-outs, shown on the snow. */
+const VIAL_IDS = ["retatrutide-vial", "ghk-cu-vial", "mots-c-vial", "pt-141-vial"];
 
-/** Vials shown in the glacier showcase at the top of the homepage.
- *  Names, doses, purity and prices come from products.ts; only the cut-out photo lives in /public/ice. */
-function iceScene(id: string, image: string): IceScene {
+const FOCUS_ORDER: Focus[] = ["weightloss", "growth", "recovery", "antiaging", "wellness"];
+
+function find(id: string) {
   const p = PRODUCTS.find((x) => x.id === id);
-  if (!p) throw new Error(`Homepage showcase: no product with id "${id}"`);
-  return {
-    id: p.id,
-    name: p.name,
-    subtitle: p.subtitle,
-    dose: p.variants.map((v) => v.label).join(" · "),
-    summary: p.summary,
-    purity: p.purity,
-    price: fromPrice(p),
-    image,
-  };
+  if (!p) throw new Error(`Homepage: no product with id "${id}"`);
+  return p;
 }
 
-const ICE_INTRO = iceScene("retatrutide-vial", "/ice/retatrutide-vial-60mg.png");
-const ICE_SCENES = [
-  iceScene("ghk-cu-vial", "/ice/ghk-cu-vial-100mg.png"),
-  iceScene("mots-c-vial", "/ice/mots-c-vial-40mg.png"),
-  iceScene("pt-141-vial", "/ice/pt-141-vial-10mg.png"),
-];
-
-const FOCUS_CARDS: { key: Focus; featured: string[] }[] = [
-  { key: "weightloss", featured: ["Retatrutide", "AOD-9604", "Kisspeptin-10"] },
-  { key: "growth", featured: ["CJC + Ipamorelin", "IGF-1 LR3", "Ipamorelin"] },
-  { key: "recovery", featured: ["BPC-157", "KLOW", "Wolverine Stack"] },
-  { key: "antiaging", featured: ["NAD+", "MOTS-C", "GHK-Cu"] },
-];
-
 export default function Home() {
-  const featured = PRODUCTS.filter((p) => p.featured).slice(0, 4);
-  const countByForm = (form: Form) => PRODUCTS.filter((p) => p.form === form).length;
+  const pens = PRODUCTS.filter((p) => p.form === "pen");
+
+  const heroProduct = find(HERO_PEN_ID);
+  const heroVariant = heroProduct.variants.find((v) => v.label === HERO_PEN_DOSE) ?? heroProduct.variants[0];
+  const heroPen = {
+    id: heroProduct.id,
+    name: heroProduct.name,
+    dose: heroVariant.label,
+    price: fromPrice(heroProduct),
+    // Full-resolution cut-out: this pen is shown very large.
+    image: (cutout(heroVariant.image) ?? heroVariant.image ?? "").replace("/pens/", "/pens/hd/"),
+    count: pens.length,
+  };
+
+  const anatomy = find(ANATOMY_PEN_ID);
+  const anatomyImage = (cutout(anatomy.variants.find((v) => v.label === ANATOMY_PEN_DOSE)?.image) ?? "").replace("/pens/", "/pens/hd/");
+
+  const vials = VIAL_IDS.map(find);
+  const vialCount = PRODUCTS.filter((p) => p.form === "vial").length;
 
   return (
     <>
-      <IceShowcase intro={ICE_INTRO} scenes={ICE_SCENES} />
+      <SummitHero pen={heroPen} />
 
-      <TrustBar />
+      <PenAnatomy image={anatomyImage} name={`${anatomy.name} ${ANATOMY_PEN_DOSE}`} />
 
-      {/* ============== CHOOSE A FORMAT: VIAL OR PEN ============== */}
-      <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
-        <h2 className="font-display text-4xl font-medium text-plum-deep sm:text-5xl">
-          Vials or pens.
-        </h2>
+      <PenRange />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          {FORMAT_CARDS.map((f) => (
-            <Link
-              key={f.form}
-              href={`/shop?form=${f.form}`}
-              className="group flex items-center gap-6 rounded-card bg-blush p-8 transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-[0_18px_40px_-24px_rgba(16,26,48,0.35)] sm:gap-8"
-            >
-              <div className="flex h-40 w-32 shrink-0 items-center justify-center sm:h-48 sm:w-40">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={f.image}
-                  alt=""
-                  aria-hidden
-                  // Product shots ship on a white backdrop; multiply drops it
-                  // into the tinted card instead of showing a white box.
-                  className={`max-h-full max-w-full object-contain mix-blend-multiply ${f.imageClass}`}
-                />
-              </div>
-
-              <div className="min-w-0">
-                <h3 className="font-display text-3xl font-medium text-plum-deep">{f.title}</h3>
-
-                <p className="mt-2 font-mono text-xs tracking-wide text-ink-soft">
-                  {countByForm(f.form)} products &middot; {f.meta}
-                </p>
-
-                <p className="mt-4 text-[0.95rem] leading-relaxed text-ink">{f.blurb}</p>
-
-                <span className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-rosegold-deep transition-colors group-hover:text-plum">
-                  Browse {f.title.toLowerCase()}
-                  <ArrowRight width={14} height={14} />
-                </span>
-              </div>
+      {/* ============== VIALS ON THE SNOW ============== */}
+      <section className="vials-band relative overflow-clip" aria-labelledby="vials-title">
+        <div className="mx-auto grid max-w-[1440px] items-end gap-10 px-4 py-24 sm:px-10 lg:grid-cols-[1fr_1.3fr] xl:px-16">
+          <div>
+            <h2 id="vials-title" className="display-xl text-[clamp(2.4rem,6.5vw,6rem)] text-plum-deep" data-split="lines">
+              Also in vials
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-ink" data-reveal="up">
+              {vialCount} compounds as lyophilised powder in a sealed vial, for researchers who reconstitute
+              their own.
+            </p>
+            <Link href="/shop?form=vial" className="btn-ghost mt-7" data-reveal="up">
+              Shop vials
+              <ArrowRight width={17} height={17} />
             </Link>
-          ))}
+          </div>
+          <ul className="grid grid-cols-4 items-end gap-3 sm:gap-6">
+            {vials.map((v, i) => {
+              const img = cutout(heroImage(v));
+              return (
+                <li key={v.id} data-reveal="up" data-delay={String(i * 0.08)}>
+                  <Link href={`/shop/${v.id}`} className="vial-tile group block text-center">
+                    {img && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={img} alt={`${v.name} vial`} loading="lazy" {...cutoutSize(img)} className="mx-auto h-auto w-full max-w-[150px]" />
+                    )}
+                    <span className="mt-3 block font-display text-sm font-semibold text-plum-deep sm:text-base">{v.name}</span>
+                    <span className="font-data block text-xs text-ink-soft">{formatPrice(fromPrice(v))}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
-      {/* ============== FEATURED BUNDLES ============== */}
-      <section className="mt-20 bg-blush/40 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="lux-rule mb-4">
-              <span className="eyebrow text-rosegold-deep">Featured Deals</span>
-            </div>
-            <h2 className="font-display text-4xl font-medium text-plum-deep sm:text-5xl">
-              Bundle Deals
+      {/* ============== BUNDLES ============== */}
+      <section className="bg-blush py-24" aria-labelledby="bundles-title">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-10 xl:px-16">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <h2 id="bundles-title" className="display-xl text-[clamp(2.4rem,6.5vw,6rem)] text-plum-deep" data-split="lines">
+              Bundles
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm text-ink-soft">
-              Curated stacks priced below the cost of buying each compound separately.
+            <p className="max-w-sm text-base leading-relaxed text-ink" data-reveal="up">
+              Stacks priced below the cost of buying each pen on its own.
             </p>
           </div>
-
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {BUNDLES.filter((b) => b.featured).map((b) => (
-              <BundleCard key={b.id} bundle={b} />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {BUNDLES.filter((b) => b.featured).map((b, i) => (
+              <div key={b.id} data-reveal="up" data-delay={String(i * 0.08)}>
+                <BundleCard bundle={b} />
+              </div>
             ))}
           </div>
-
-          <div className="mt-10 text-center">
-            <Link href="/bundles" className="btn-ghost text-sm">
-              View all bundles
+          <div className="mt-10">
+            <Link href="/bundles" className="btn-ghost">
+              All bundles
+              <ArrowRight width={17} height={17} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ============== SHOP BY TREATMENT FOCUS ============== */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <div className="lux-rule mb-4">
-            <span className="eyebrow text-rosegold-deep">Curated Collections</span>
-          </div>
-          <h2 className="font-display text-4xl font-medium text-plum-deep sm:text-5xl">
-            Shop by Category
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-ink-soft">
-            A research-grade catalogue organised by compound class.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {FOCUS_CARDS.map(({ key, featured }) => {
-            const meta = FOCUS_META[key];
-            const dark = key === "growth";
+      {/* ============== CATEGORIES ============== */}
+      <section className="mx-auto max-w-[1440px] overflow-x-clip px-4 py-24 sm:px-10 xl:px-16" aria-labelledby="cats-title">
+        <h2 id="cats-title" className="font-data text-xs uppercase tracking-[0.18em] text-ink-soft">
+          Shop by research area
+        </h2>
+        <ul className="mt-6 border-t border-line">
+          {FOCUS_ORDER.map((k) => {
+            const n = PRODUCTS.filter((p) => p.focus.includes(k)).length;
             return (
-              <Link
-                key={key}
-                href={`/shop?focus=${key}`}
-                className={`group relative flex flex-col overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_56px_-28px_rgba(122,46,85,0.45)] ${
-                  dark
-                    ? "border-charcoal-soft bg-charcoal text-white"
-                    : "border-line bg-white"
-                }`}
-              >
-                <span
-                  className="absolute right-5 top-5 h-3.5 w-3.5 rounded-full ring-4 ring-white/40"
-                  style={{ background: meta.cap }}
-                />
-                <span
-                  className={`eyebrow ${dark ? "text-rosegold-soft" : "text-rosegold-deep"}`}
-                >
-                  Category
-                </span>
-                <h3
-                  className={`font-display mt-3 text-2xl font-medium leading-tight ${
-                    dark ? "text-white" : "text-ink"
-                  }`}
-                >
-                  {meta.title}
-                </h3>
-                <p className={`mt-2 text-sm ${dark ? "text-white/70" : "text-ink-soft"}`}>
-                  {meta.blurb}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-1.5">
-                  {featured.map((f) => (
-                    <span
-                      key={f}
-                      className={`rounded-full px-2.5 py-1 text-[0.66rem] font-medium ${
-                        dark ? "bg-white/10 text-white/80" : "bg-blush text-plum"
-                      }`}
-                    >
-                      {f}
-                    </span>
-                  ))}
-                </div>
-                <span
-                  className={`mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold transition-colors ${
-                    dark
-                      ? "text-white group-hover:text-rosegold-soft"
-                      : "text-plum group-hover:text-rosegold-deep"
-                  }`}
-                >
-                  Explore collection
-                  <ArrowRight
-                    width={16}
-                    height={16}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </span>
-              </Link>
+              <li key={k} className="border-b border-line" data-reveal="glide">
+                <Link href={`/shop?focus=${k}`} className="cat-row group">
+                  <span className="cat-row__title font-display">{FOCUS_META[k].title}</span>
+                  <span className="font-data text-sm text-ink-soft">{n} products</span>
+                  <ArrowRight width={22} height={22} className="cat-row__arrow" />
+                </Link>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </section>
 
-      {/* ============== FEATURED PRODUCTS ============== */}
-      <section className="bg-blush/40 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <span className="eyebrow text-rosegold-deep">Best Sellers</span>
-              <h2 className="font-display mt-2 text-4xl font-medium text-plum-deep sm:text-5xl">
-                Featured Compounds
-              </h2>
-            </div>
-            <Link href="/shop" className="btn-ghost text-sm">
-              View all
-              <ArrowRight width={16} height={16} />
+      {/* ============== SUMMIT CLOSER ============== */}
+      <section className="closer relative overflow-clip" aria-labelledby="closer-title">
+        <div className="closer__sky" aria-hidden="true" />
+        <div className="closer__mountain" aria-hidden="true" data-parallax="0.08">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/mountain/massif.webp" alt="" loading="lazy" width={2400} height={1500} />
+        </div>
+        <Snowfall density={0.6} className="z-10" />
+        <div className="relative z-20 mx-auto max-w-[1440px] px-4 pb-20 pt-28 sm:px-10 xl:px-16">
+          <h2 id="closer-title" className="display-xl max-w-5xl text-[clamp(2.6rem,8vw,8rem)] text-white" data-split="lines">
+            Tested at the top
+          </h2>
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-white/90" data-reveal="up">
+            Every compound is characterised for identity and purity and backed by independent third-party testing,
+            supplied for laboratory research use only.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3" data-reveal="up">
+            <Link href="/shop" className="btn-ghost">
+              Shop the catalog
+              <ArrowRight width={17} height={17} />
             </Link>
           </div>
-
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {featured.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============== TONE / TRUST CLOSER ============== */}
-      <section className="mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <div className="lux-rule mb-6">
-          <DnaMark size={20} />
-        </div>
-        <h2 className="font-display text-3xl font-medium leading-snug text-plum-deep sm:text-4xl">
-          Peptide science. <span className="text-rosegold-gradient">Verified purity.</span>
-        </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-ink-soft">
-          Cellexa Labs offers a curated range of research peptides and related compounds,
-          each characterised for identity and purity and backed by rigorous third-party
-          testing — supplied for laboratory research use only.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link href="/shop" className="btn-primary">Browse the Catalog</Link>
         </div>
       </section>
     </>

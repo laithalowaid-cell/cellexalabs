@@ -163,6 +163,7 @@ export default function ShopClient({
               {filtered.length} {filtered.length === 1 ? "result" : "results"}
             </p>
             <select
+              aria-label="Sort products"
               value={sort}
               onChange={(e) => setSort(e.target.value as Sort)}
               className="ml-auto rounded-full border border-line bg-white px-4 py-2 text-sm text-ink outline-none focus:border-rosegold"

@@ -37,8 +37,12 @@ npm run lint
 | Order form | `src/components/CheckoutForm.tsx` |
 | Cart and order message | `src/components/CartDrawer.tsx`, `src/lib/store.tsx` |
 | Homepage | `src/app/page.tsx` |
-| Glacier showcase at the top of the homepage (which vials appear) | `ICE_INTRO` and `ICE_SCENES` in `src/app/page.tsx`; scroll effect in `src/components/IceShowcase.tsx` |
-| Showcase images (transparent vial cut-outs, ice background) | `public/ice/` |
+| Homepage hero pen, anatomy pen, vials shown | `HERO_PEN_ID`, `ANATOMY_PEN_ID`, `VIAL_IDS` at the top of `src/app/page.tsx` |
+| Mountain hero, pen anatomy, pen range rows | `src/components/summit/` |
+| Mountain images (three depth layers) | `public/mountain/` (rendered by a script, see DESIGN.md) |
+| See-through pen and vial images | `public/pens/`, `public/vials/`, looked up by `src/lib/pens.ts`. Add a cut-out when you add a product photo, or the site falls back to the original photo |
+| Smooth scroll, reveals, page transition | `src/engine/` (GSAP + Lenis). Text reveals use `data-split`, blocks use `data-reveal` |
+| Design rules (colours, type, motion) | `DESIGN.md` |
 | Menu and footer | `src/components/Header.tsx`, `src/components/Footer.tsx` |
 | Colours and shared styles | `src/app/globals.css` |
 | Site title and social sharing text | `src/app/layout.tsx` |

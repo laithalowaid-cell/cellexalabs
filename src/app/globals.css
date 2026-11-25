@@ -1,62 +1,61 @@
 @import "tailwindcss";
 
 /* ===========================================================
-   Cellexa Labs — Navy & Porcelain Clinical Design System
-   -----------------------------------------------------------
-   Theme tokens keep their original names (plum / rosegold) for
-   compatibility, but their VALUES are re-skinned to the brand:
-   • "plum"     → brand navy  (logo "C" + wordmark)
-   • "rosegold" → steel blue  (accents, rules, highlights)
+   Cellexa Labs: Summit design system (see DESIGN.md)
+   Snow white ground, rock-shadow navy ink, glacier blue accent.
+   Token names keep their old "plum" / "rosegold" names for
+   compatibility; the values are the Summit palette.
    =========================================================== */
 
 @theme {
-  /* Core surfaces */
   --color-background: #ffffff;
-  --color-foreground: #14203a;
+  --color-foreground: #0b1a35;
 
-  /* Brand — navy (maps onto former "plum") */
-  --color-plum: #2b4373;
-  --color-plum-deep: #1e3054;
-  --color-plum-ink: #101a30;
+  /* Ink: rock-shadow navy (former "plum") */
+  --color-plum: #12285a;
+  --color-plum-deep: #0b1a35;
+  --color-plum-ink: #071229;
 
-  /* Brand — steel blue accent (maps onto former "rosegold") */
-  --color-rosegold: #7a93be;
-  --color-rosegold-deep: #52709f;
-  --color-rosegold-soft: #c9d6e9;
+  /* Accent: glacier blue (former "rosegold") */
+  --color-rosegold: #4f7fd6;
+  --color-rosegold-deep: #1d55c0;
+  --color-rosegold-soft: #cfdff6;
 
-  /* Neutrals — cool porcelain */
-  --color-blush: #f7f9fc;
-  --color-blush-deep: #edf1f8;
-  --color-mist: #f5f6f8;
-  --color-line: #dde3ee;
-  --color-ink: #14203a;
-  --color-ink-soft: #6a7488;
+  /* Snow neutrals */
+  --color-blush: #f3f7fc;
+  --color-blush-deep: #e6eef9;
+  --color-mist: #f1f5fa;
+  --color-line: #dce5f1;
+  --color-ink: #0b1a35;
+  --color-ink-soft: #55667f;
 
   /* Dark surfaces */
-  --color-charcoal: #1e3054;
-  --color-charcoal-soft: #2b4373;
-  --color-navy: #101a30;
+  --color-charcoal: #0b1a35;
+  --color-charcoal-soft: #12285a;
+  --color-navy: #071229;
 
-  /* Category cap indicators — cool clinical palette */
-  --color-cap-mint: #4f8a86;     /* teal       — Recovery */
-  --color-cap-lavender: #2b4373; /* navy       — Growth */
-  --color-cap-gold: #52709f;     /* steel blue — Weight Loss */
-  --color-cap-peach: #78839a;    /* slate      — Wellness */
-  --color-cap-rose: #9db2d4;     /* pale blue  — Anti-Aging */
+  /* Sky */
+  --color-sky: #2a5fae;
+  --color-horizon: #d7e7f7;
 
-  /* Feedback */
-  --color-instock: #5ba37e;
+  /* Category indicators */
+  --color-cap-mint: #3f8f9a;
+  --color-cap-lavender: #12285a;
+  --color-cap-gold: #1d55c0;
+  --color-cap-peach: #6b7c97;
+  --color-cap-rose: #8fb3e8;
+
+  --color-instock: #2f8a5e;
 
   /* Fonts */
-  --font-serif: var(--font-cormorant), Georgia, serif;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-display), "Arial Narrow", system-ui, sans-serif;
+  --font-sans: var(--font-text), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-data), ui-monospace, Menlo, monospace;
 
-  /* Radii */
-  --radius-card: 14px;
+  --radius-card: 16px;
 
-  /* Animations */
   --animate-fade-in: fade-in 0.5s ease both;
-  --animate-slide-up: slide-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-slide-up: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes fade-in {
@@ -86,7 +85,6 @@
 
 /* ----------------------------------------------------------- */
 
-html { scroll-behavior: smooth; }
 
 body {
   background: var(--color-background);
@@ -114,8 +112,19 @@ body {
 /* Display heading helper */
 .font-display {
   font-family: var(--font-serif);
-  letter-spacing: -0.01em;
+  font-stretch: 112%;
+  letter-spacing: -0.025em;
 }
+/* Expanded display for scene titles */
+.display-xl {
+  font-family: var(--font-serif);
+  font-stretch: 125%;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+.font-data { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
 /* Eyebrow / tracked-out small caps */
 .eyebrow {
@@ -140,38 +149,46 @@ body {
   color: transparent;
 }
 
-/* Primary button — navy → gold */
-.btn-primary {
+/* Buttons. Hover: a glacier-blue fill glides in from the left and the label rides up. */
+.btn-primary, .btn-ghost {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background: linear-gradient(105deg, var(--color-plum) 0%, var(--color-rosegold-deep) 135%);
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  gap: 0.55rem;
   border-radius: 9999px;
-  padding: 0.85rem 1.9rem;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-  box-shadow: 0 10px 26px -12px rgba(27, 36, 71, 0.55);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  padding: 0.9rem 1.8rem;
+  transition: color 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s ease, transform 0.2s ease;
 }
-.btn-primary:hover { transform: translateY(-1px); filter: brightness(1.06); box-shadow: 0 16px 32px -14px rgba(27, 36, 71, 0.6); }
-.btn-primary:active { transform: translateY(0); }
+.btn-primary { background: var(--color-plum-deep); color: #fff; }
+.btn-ghost { background: #fff; color: var(--color-plum-deep); border: 1px solid var(--color-line); }
+.btn-primary::before, .btn-ghost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-rosegold-deep);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-primary:hover::before, .btn-ghost:hover::before { transform: scaleX(1); }
+.btn-ghost:hover { color: #fff; border-color: var(--color-rosegold-deep); }
+.btn-primary:active, .btn-ghost:active { transform: scale(0.98); }
+.btn-primary svg, .btn-ghost svg { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.btn-primary:hover svg, .btn-ghost:hover svg { transform: translateX(4px); }
 
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border: 1px solid var(--color-line);
-  color: var(--color-plum-deep);
-  font-weight: 600;
-  border-radius: 9999px;
-  padding: 0.8rem 1.7rem;
-  background: #fff;
-  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+/* Text link that glides: underline draws in from the left */
+.link-glide {
+  background: linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat;
+  transition: background-size 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  padding-bottom: 2px;
 }
-.btn-ghost:hover { border-color: var(--color-rosegold); background: var(--color-blush); transform: translateY(-1px); }
+.link-glide:hover, .link-glide[aria-current="page"] { background-size: 100% 1px; }
 
 /* Card surface */
 .surface-card {
@@ -288,76 +305,248 @@ input[type="range"].lux-range::-moz-range-thumb {
   border: 3px solid #fff;
 }
 
+
 /* ===========================================================
-   Glacier showcase (homepage) — see components/IceShowcase.tsx
+   Engine foundation (smooth scroll, reveals, transitions)
    =========================================================== */
+:focus-visible { outline: 2px solid var(--color-rosegold-deep); outline-offset: 3px; border-radius: 4px; }
+#main:focus { outline: none; }
+.skip-link {
+  position: fixed; left: 1rem; top: 1rem; z-index: 200;
+  padding: 0.6em 1em; border-radius: 9999px; background: var(--color-plum-deep); color: #fff; font-weight: 600;
+  transform: translateY(-200%);
+}
+.skip-link:focus-visible { transform: none; }
 
-/* Frosted light on the text side so copy stays readable */
-.ice-veil {
-  background:
-    linear-gradient(0deg, rgba(246, 250, 255, 0.92) 0%, rgba(246, 250, 255, 0.7) 32%, rgba(246, 250, 255, 0) 58%);
-}
-@media (min-width: 768px) {
-  .ice-veil {
-    background:
-      linear-gradient(90deg, rgba(246, 250, 255, 0.9) 0%, rgba(246, 250, 255, 0.62) 34%, rgba(246, 250, 255, 0) 62%),
-      radial-gradient(900px 500px at 0% 0%, rgba(255, 255, 255, 0.5), transparent 70%);
-  }
-}
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+body { overflow-x: clip; }
 
-/* Drift of frost that sweeps through between scenes */
-.ice-fog {
-  background:
-    radial-gradient(45% 55% at 30% 40%, rgba(255, 255, 255, 0.95), transparent 70%),
-    radial-gradient(40% 50% at 70% 60%, rgba(240, 248, 255, 0.95), transparent 70%),
-    radial-gradient(60% 40% at 50% 90%, rgba(225, 240, 252, 0.9), transparent 70%),
-    linear-gradient(rgba(240, 247, 255, 0.55), rgba(240, 247, 255, 0.55));
-  filter: blur(8px);
-}
+.motion [data-split], .motion [data-reveal] { visibility: hidden; }
+.split-line { padding-bottom: 0.08em; margin-bottom: -0.08em; }
 
-/* A translucent block of ice for the vials to stand on */
-.ice-block {
-  border-radius: 6px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 9%, rgba(214, 236, 252, 0.55) 10%, rgba(150, 200, 240, 0.35) 55%, rgba(90, 150, 215, 0.45) 100%),
-    linear-gradient(100deg, rgba(255, 255, 255, 0.45) 0%, transparent 30%, transparent 70%, rgba(255, 255, 255, 0.35) 100%),
-    url(/ice/glacier.jpg) center / 260% auto;
-  background-blend-mode: normal, normal, soft-light;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -18px 30px -12px rgba(40, 100, 170, 0.45),
-    inset 14px 0 24px -14px rgba(255, 255, 255, 0.8),
-    0 30px 40px -20px rgba(8, 40, 90, 0.45);
-  backdrop-filter: blur(6px) saturate(1.3);
-  -webkit-backdrop-filter: blur(6px) saturate(1.3);
-  overflow: hidden;
-}
-/* Fine internal fracture lines */
-.ice-block::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(118deg, transparent 46%, rgba(255, 255, 255, 0.7) 47%, transparent 48.5%),
-    linear-gradient(64deg, transparent 70%, rgba(255, 255, 255, 0.5) 71%, transparent 72%),
-    linear-gradient(160deg, transparent 22%, rgba(255, 255, 255, 0.4) 23%, transparent 24%);
-}
-
-@keyframes ice-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-.ice-float { animation: ice-float 5s ease-in-out infinite; }
-
-@keyframes ice-scroll-line {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-.ice-scroll-line { animation: ice-scroll-line 2s ease-in-out infinite; }
+#curtain { position: fixed; inset: 0; z-index: 150; pointer-events: none; visibility: hidden; overflow: hidden; }
+.curtain__panel { position: absolute; inset: 0; background: #fff; display: flex; align-items: center; justify-content: center; }
+.curtain__peak { width: min(60vw, 520px); height: auto; aspect-ratio: 600 / 140; fill: var(--color-plum-deep); }
 
 @media (prefers-reduced-motion: reduce) {
-  .ice-float, .ice-scroll-line { animation: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+::selection { background: var(--color-rosegold-deep); color: #fff; }
+
+/* ===========================================================
+   Summit hero (components/summit/SummitHero.tsx)
+   =========================================================== */
+.summit { height: 240svh; }
+.summit__stage {
+  position: sticky; top: 4rem; height: calc(100svh - 4rem); overflow: clip;
+  --sky-top: #2a5fae; --sky-mid: #6f9fdc; --horizon: #d7e7f7;
+}
+.summit__sky { background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 42%, var(--horizon) 70%, #fff 100%); }
+.summit__layer { position: absolute; inset: 0; will-change: transform; }
+.summit__layer img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; }
+.summit__wordmark {
+  position: absolute; left: 0; right: 0; top: 9svh; display: flex; justify-content: center;
+  font-size: clamp(4rem, 15vw, 17rem); color: #fff; opacity: 0.94; overflow: clip;
+  padding-bottom: 0.04em; will-change: transform; pointer-events: none;
+}
+.summit__wordmark span { display: inline-block; }
+.summit__ground {
+  position: absolute; inset: auto 0 0 0; height: 16svh; z-index: 5;
+  background: linear-gradient(rgba(255,255,255,0), #fff 85%);
+}
+.summit__pen {
+  position: absolute; z-index: 15; left: 50%; bottom: 40svh; width: min(64vw, 940px);
+  margin-left: calc(min(64vw, 940px) / -2 + 12vw); will-change: transform;
+}
+.summit__shadow {
+  position: absolute; left: 6%; right: 4%; bottom: -26%; height: 30%; z-index: 0;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(18, 40, 90, 0.28), transparent 70%);
+  filter: blur(6px);
+}
+.summit__copy {
+  position: absolute; z-index: 25; inset: auto 0 0 0;
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem;
+  padding: 0 max(1rem, env(safe-area-inset-left)) 2rem max(1rem, env(safe-area-inset-left));
+}
+@media (min-width: 640px) { .summit__copy { padding: 0 2.5rem 3rem; } }
+@media (min-width: 1280px) { .summit__copy { padding: 0 4rem 3.5rem; } }
+.summit__meta { display: none; grid-template-columns: repeat(4, auto); gap: 0.4rem 2rem; font-size: 0.8rem; }
+.summit__meta dt { color: var(--color-ink-soft); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.68rem; }
+.summit__meta dd { color: var(--color-plum-deep); font-weight: 600; margin-top: 0.2rem; }
+@media (min-width: 1024px) { .summit__meta { display: grid; } }
+.summit__next {
+  position: absolute; z-index: 25; left: 50%; bottom: 1.25rem; translate: -50% 0;
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-ink-soft);
+  display: none;
+}
+.motion .summit__next { display: block; opacity: 0; transform: translateY(10px); }
+@media (max-width: 767px) {
+  .summit { height: 180svh; }
+  .summit__wordmark { top: 15svh; font-size: 19vw; }
+  .summit__pen { width: 96vw; margin-left: -48vw; bottom: 47svh; }
+  .summit__copy { padding-bottom: 5.5rem; }
+}
+/* Without motion the stage is a still poster and the copy stays readable. */
+html:not(.motion) .summit { height: auto; }
+html:not(.motion) .summit__stage { position: relative; }
+
+/* ===========================================================
+   Pen anatomy (components/summit/PenAnatomy.tsx)
+   =========================================================== */
+.anatomy { height: 320svh; background: linear-gradient(#fff, var(--color-blush) 40%, #fff); }
+.anatomy__stage { position: sticky; top: 0; height: 100svh; overflow: clip; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto auto; padding: 6rem 1rem 2rem; }
+@media (min-width: 640px) { .anatomy__stage { padding: 7rem 2.5rem 2.5rem; } }
+@media (min-width: 1280px) { .anatomy__stage { padding: 7rem 4rem 3rem; } }
+.anatomy__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+.anatomy__counter { font-size: clamp(1.1rem, 2vw, 1.6rem); color: var(--color-plum-deep); font-weight: 600; }
+.anatomy__track { position: relative; display: flex; align-items: center; min-height: 0; }
+.anatomy__pen { width: 150vw; flex: none; will-change: transform; filter: drop-shadow(0 30px 30px rgba(18, 40, 90, 0.18)); }
+.anatomy__pen img { width: 100%; height: auto; }
+.anatomy__parts { position: relative; display: grid; min-height: 11rem; }
+.anatomy__part { grid-area: 1 / 1; }
+.anatomy__progress { height: 2px; background: var(--color-line); margin-top: 1.5rem; }
+.anatomy__progress span { display: block; height: 100%; background: var(--color-rosegold-deep); transform: scaleX(0); transform-origin: left; }
+@media (min-width: 1024px) { .anatomy__pen { width: 125vw; } }
+@media (max-width: 767px) { .anatomy { height: 260svh; } .anatomy__pen { width: 240vw; } }
+/* Without motion: a still, full pen and all three callouts in a row. */
+html:not(.motion) .anatomy { height: auto; }
+html:not(.motion) .anatomy__stage { position: relative; height: auto; gap: 2rem; }
+html:not(.motion) .anatomy__pen { width: 100%; }
+html:not(.motion) .anatomy__parts { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem; }
+html:not(.motion) .anatomy__part { grid-area: auto; }
+
+/* ===========================================================
+   Pen range index (components/summit/PenRange.tsx)
+   =========================================================== */
+.range-row {
+  position: relative; isolation: isolate; overflow: clip;
+  display: grid; align-items: center; gap: 0.75rem 2rem;
+  grid-template-columns: 1fr; padding: 1.5rem 0.25rem;
+}
+@media (min-width: 900px) {
+  .range-row { grid-template-columns: minmax(14rem, 1fr) minmax(0, 2.2fr) auto; padding: 1.4rem 1rem; }
+}
+.range-row__flood {
+  position: absolute; inset: 0; z-index: -1; background: var(--color-blush);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.range-row:hover .range-row__flood, .range-row:focus-visible .range-row__flood { transform: scaleX(1); }
+.range-row__pen { display: block; min-width: 0; }
+.range-row__pen img {
+  width: 100%; max-width: 760px; height: auto;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 14px 14px rgba(18, 40, 90, 0.14));
+}
+.range-row:hover .range-row__pen img, .range-row:focus-visible .range-row__pen img { transform: translateX(28px); }
+.range-row__price { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; font-weight: 600; color: var(--color-plum-deep); white-space: nowrap; }
+.range-row__arrow { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.range-row:hover .range-row__arrow { transform: translateX(6px); }
+
+/* ===========================================================
+   Home: vials, categories, closer
+   =========================================================== */
+.vials-band { background: linear-gradient(#fff 0%, #fff 55%, var(--color-blush) 100%); }
+.vial-tile img { transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 18px 16px rgba(18, 40, 90, 0.16)); }
+.vial-tile:hover img { transform: translateY(-10px); }
+
+.cat-row { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1.25rem; padding: 1.4rem 0.25rem; }
+.cat-row__title {
+  font-size: clamp(1.6rem, 4.2vw, 3.6rem); font-weight: 600; color: var(--color-plum-deep); line-height: 1.05;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+}
+.cat-row:hover .cat-row__title { transform: translateX(24px); color: var(--color-rosegold-deep); }
+.cat-row__arrow { color: var(--color-plum-deep); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.cat-row:hover .cat-row__arrow { transform: translateX(8px); }
+
+.closer { min-height: 92svh; display: flex; align-items: flex-end; }
+.closer > div:last-child { width: 100%; }
+.closer__sky { position: absolute; inset: 0; background: linear-gradient(180deg, #123a7c 0%, #2a5fae 45%, #6f9fdc 100%); }
+.closer__mountain { position: absolute; inset: -10% 0 0 0; }
+.closer__mountain img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.closer::after { content: ""; position: absolute; inset: 0; z-index: 15; background: linear-gradient(180deg, rgba(11, 26, 53, 0) 30%, rgba(11, 26, 53, 0.72) 100%); }
+.range-row__pen.is-vial img { max-width: 72px; margin-inline: auto 0; }
+@media (min-width: 900px) { .range-row__pen.is-vial img { margin-inline: 0; } }
+
+/* ===========================================================
+   Product page (components/ProductDetail.tsx)
+   =========================================================== */
+.pdp-scene {
+  position: relative; overflow: clip; isolation: isolate;
+  min-height: calc(100svh - 4rem);
+  display: grid; grid-template-columns: 1fr; align-content: end;
+  padding: 5.5rem 1rem 2rem;
+}
+.pdp-scene__sky { position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, #2a5fae 0%, #6f9fdc 40%, #d7e7f7 68%, #fff 100%); }
+.pdp-scene__layer { position: absolute; inset: 0; z-index: -1; will-change: transform; }
+.pdp-scene__layer img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; }
+.pdp-scene__name {
+  position: absolute; z-index: -1; left: 0; right: 0; top: 4.5rem; display: flex; justify-content: center;
+  font-size: min(13rem, 19vw, calc(94vw / (var(--chars) * 0.84))); color: #fff; white-space: nowrap; overflow: clip; will-change: transform;
+}
+.pdp-scene__name span { display: inline-block; }
+/* massif must sit above the name: picture order handles it, but keep z explicit */
+.pdp-scene [data-layer="massif"] { z-index: -1; }
+.pdp-scene__crumbs {
+  position: absolute; z-index: 20; top: 1.25rem; left: 1rem; display: flex; gap: 0.6rem; font-size: 0.75rem;
+  color: #fff; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.pdp-scene__product { position: relative; z-index: 14; justify-self: center; width: min(94vw, 960px); margin-bottom: 1.5rem; }
+.pdp-scene__product.is-vial { width: min(46vw, 260px); }
+.pdp-scene__product img { width: 100%; height: auto; position: relative; z-index: 1; }
+.pdp-scene__shadow {
+  position: absolute; left: 8%; right: 6%; bottom: -14%; height: 22%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(18, 40, 90, 0.26), transparent 70%); filter: blur(6px);
+}
+.pdp-buy {
+  position: relative; z-index: 16; background: #fff; border-radius: var(--radius-card);
+  padding: 1.5rem; box-shadow: 0 30px 60px -30px rgba(11, 26, 53, 0.35);
+}
+@media (min-width: 1024px) {
+  .pdp-scene { grid-template-columns: 1fr minmax(24rem, 30rem); align-items: end; gap: 2rem; padding: 6rem 4rem 3.5rem; }
+  .pdp-scene__crumbs { left: 4rem; top: 1.75rem; }
+  .pdp-scene__product { justify-self: start; width: min(62vw, 1060px); margin-bottom: 7rem; }
+  .pdp-scene__product.is-vial { width: 260px; justify-self: center; }
+  .pdp-buy { padding: 2rem; }
+}
+@media (max-width: 1023px) {
+  .pdp-scene__name { top: 3.5rem; }
+}
+.dose-pill {
+  position: relative; isolation: isolate; overflow: hidden; text-align: left;
+  border: 1px solid var(--color-line); border-radius: 14px; padding: 0.6rem 0.95rem; color: var(--color-ink);
+  transition: color 0.4s ease, border-color 0.4s ease;
+}
+.dose-pill::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--color-plum-deep);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dose-pill:hover { border-color: var(--color-rosegold-deep); }
+.dose-pill.is-on { color: #fff; border-color: var(--color-plum-deep); }
+.dose-pill.is-on::before { transform: scaleX(1); }
+@keyframes tick-in { from { transform: translateY(40%); opacity: 0; } to { transform: none; opacity: 1; } }
+.pdp-total { animation: tick-in 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.pdp-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.5rem; align-content: start; border-top: 1px solid var(--color-line); padding-top: 1.75rem; }
+.pdp-tab {
+  position: relative; white-space: nowrap; padding: 0.9rem 1.1rem; font-size: 0.95rem; font-weight: 600; color: var(--color-ink-soft);
+  transition: color 0.3s ease;
+}
+.pdp-tab::after {
+  content: ""; position: absolute; left: 0.8rem; right: 0.8rem; bottom: -1px; height: 2px; background: var(--color-plum-deep);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pdp-tab:hover { color: var(--color-ink); }
+.pdp-tab.is-on { color: var(--color-plum-deep); }
+.pdp-tab.is-on::after { transform: scaleX(1); }
+
+/* ===========================================================
+   Product card (shop grid)
+   =========================================================== */
+.product-card { background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius-card); transition: border-color 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.product-card:hover { border-color: var(--color-rosegold); transform: translateY(-4px); }
+.product-card__stage { background: radial-gradient(120% 90% at 50% 110%, #fff 0%, var(--color-blush) 55%, var(--color-blush-deep) 100%); }
+.product-card__media img { filter: drop-shadow(0 16px 14px rgba(18, 40, 90, 0.16)); transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+.product-card:hover .product-card__media img { transform: translateX(14px); }
+.product-card:hover .product-card__media img.max-h-full { transform: translateY(-8px); }
