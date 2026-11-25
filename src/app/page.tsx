@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { PRODUCTS, FOCUS_META, Focus, Form } from "@/lib/products";
+import { PRODUCTS, FOCUS_META, Focus, Form, fromPrice } from "@/lib/products";
 import { BUNDLES } from "@/lib/bundles";
 import ProductCard from "@/components/ProductCard";
 import BundleCard from "@/components/BundleCard";
 import TrustBar from "@/components/TrustBar";
-import HeroVisual from "@/components/HeroVisual";
+import IceShowcase, { IceScene } from "@/components/IceShowcase";
 import { ArrowRight } from "@/components/icons";
 import { DnaMark } from "@/components/Logo";
 
@@ -35,6 +35,30 @@ const FORMAT_CARDS: {
   },
 ];
 
+/** Vials shown in the glacier showcase at the top of the homepage.
+ *  Names, doses, purity and prices come from products.ts; only the cut-out photo lives in /public/ice. */
+function iceScene(id: string, image: string): IceScene {
+  const p = PRODUCTS.find((x) => x.id === id);
+  if (!p) throw new Error(`Homepage showcase: no product with id "${id}"`);
+  return {
+    id: p.id,
+    name: p.name,
+    subtitle: p.subtitle,
+    dose: p.variants.map((v) => v.label).join(" · "),
+    summary: p.summary,
+    purity: p.purity,
+    price: fromPrice(p),
+    image,
+  };
+}
+
+const ICE_INTRO = iceScene("retatrutide-vial", "/ice/retatrutide-vial-60mg.png");
+const ICE_SCENES = [
+  iceScene("ghk-cu-vial", "/ice/ghk-cu-vial-100mg.png"),
+  iceScene("mots-c-vial", "/ice/mots-c-vial-40mg.png"),
+  iceScene("pt-141-vial", "/ice/pt-141-vial-10mg.png"),
+];
+
 const FOCUS_CARDS: { key: Focus; featured: string[] }[] = [
   { key: "weightloss", featured: ["Retatrutide", "AOD-9604", "Kisspeptin-10"] },
   { key: "growth", featured: ["CJC + Ipamorelin", "IGF-1 LR3", "Ipamorelin"] },
@@ -48,58 +72,7 @@ export default function Home() {
 
   return (
     <>
-      {/* ============== HERO ============== */}
-      <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(1200px 500px at 15% -10%, rgba(236,220,174,0.5), transparent), radial-gradient(900px 500px at 100% 0%, rgba(27,36,71,0.12), transparent)",
-          }}
-        />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2 lg:px-8">
-          {/* Left */}
-          <div style={{ animation: "var(--animate-slide-up)" }}>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-3.5 py-1.5 backdrop-blur">
-              <DnaMark size={16} />
-              <span className="eyebrow text-rosegold-deep">Premium Research Peptides · UAE</span>
-            </div>
-            <h1 className="font-display text-5xl font-medium leading-[1.05] text-plum-deep sm:text-6xl lg:text-7xl">
-              Research-Grade Peptides.
-              <br />
-              <span className="text-rosegold-gradient">Gulf-Grade Purity.</span>
-            </h1>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-ink-soft">
-              Research-grade peptides, synthesized to a minimum{" "}
-              <strong className="text-ink">99% purity</strong> and independently third-party
-              tested. Pens and vials, discreetly packaged with fast delivery across the UAE.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link href="/shop" className="btn-primary">
-                Shop Our Catalog
-                <ArrowRight width={18} height={18} />
-              </Link>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
-              {[
-                ["99%+", "Verified Purity"],
-                ["3rd-Party", "Lab Tested"],
-                ["UAE", "Fast Delivery"],
-              ].map(([big, small]) => (
-                <div key={small}>
-                  <p className="font-display text-2xl font-semibold text-plum">{big}</p>
-                  <p className="text-xs uppercase tracking-wider text-ink-soft">{small}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right */}
-          <div className="relative" style={{ animation: "var(--animate-slide-up)", animationDelay: "0.1s" }}>
-            <HeroVisual />
-          </div>
-        </div>
-      </section>
+      <IceShowcase intro={ICE_INTRO} scenes={ICE_SCENES} />
 
       <TrustBar />
 

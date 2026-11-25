@@ -37,6 +37,8 @@ npm run lint
 | Order form | `src/components/CheckoutForm.tsx` |
 | Cart and order message | `src/components/CartDrawer.tsx`, `src/lib/store.tsx` |
 | Homepage | `src/app/page.tsx` |
+| Glacier showcase at the top of the homepage (which vials appear) | `ICE_INTRO` and `ICE_SCENES` in `src/app/page.tsx`; scroll effect in `src/components/IceShowcase.tsx` |
+| Showcase images (transparent vial cut-outs, ice background) | `public/ice/` |
 | Menu and footer | `src/components/Header.tsx`, `src/components/Footer.tsx` |
 | Colours and shared styles | `src/app/globals.css` |
 | Site title and social sharing text | `src/app/layout.tsx` |

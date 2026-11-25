@@ -287,3 +287,77 @@ input[type="range"].lux-range::-moz-range-thumb {
   cursor: pointer;
   border: 3px solid #fff;
 }
+
+/* ===========================================================
+   Glacier showcase (homepage) — see components/IceShowcase.tsx
+   =========================================================== */
+
+/* Frosted light on the text side so copy stays readable */
+.ice-veil {
+  background:
+    linear-gradient(0deg, rgba(246, 250, 255, 0.92) 0%, rgba(246, 250, 255, 0.7) 32%, rgba(246, 250, 255, 0) 58%);
+}
+@media (min-width: 768px) {
+  .ice-veil {
+    background:
+      linear-gradient(90deg, rgba(246, 250, 255, 0.9) 0%, rgba(246, 250, 255, 0.62) 34%, rgba(246, 250, 255, 0) 62%),
+      radial-gradient(900px 500px at 0% 0%, rgba(255, 255, 255, 0.5), transparent 70%);
+  }
+}
+
+/* Drift of frost that sweeps through between scenes */
+.ice-fog {
+  background:
+    radial-gradient(45% 55% at 30% 40%, rgba(255, 255, 255, 0.95), transparent 70%),
+    radial-gradient(40% 50% at 70% 60%, rgba(240, 248, 255, 0.95), transparent 70%),
+    radial-gradient(60% 40% at 50% 90%, rgba(225, 240, 252, 0.9), transparent 70%),
+    linear-gradient(rgba(240, 247, 255, 0.55), rgba(240, 247, 255, 0.55));
+  filter: blur(8px);
+}
+
+/* A translucent block of ice for the vials to stand on */
+.ice-block {
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 9%, rgba(214, 236, 252, 0.55) 10%, rgba(150, 200, 240, 0.35) 55%, rgba(90, 150, 215, 0.45) 100%),
+    linear-gradient(100deg, rgba(255, 255, 255, 0.45) 0%, transparent 30%, transparent 70%, rgba(255, 255, 255, 0.35) 100%),
+    url(/ice/glacier.jpg) center / 260% auto;
+  background-blend-mode: normal, normal, soft-light;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -18px 30px -12px rgba(40, 100, 170, 0.45),
+    inset 14px 0 24px -14px rgba(255, 255, 255, 0.8),
+    0 30px 40px -20px rgba(8, 40, 90, 0.45);
+  backdrop-filter: blur(6px) saturate(1.3);
+  -webkit-backdrop-filter: blur(6px) saturate(1.3);
+  overflow: hidden;
+}
+/* Fine internal fracture lines */
+.ice-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(118deg, transparent 46%, rgba(255, 255, 255, 0.7) 47%, transparent 48.5%),
+    linear-gradient(64deg, transparent 70%, rgba(255, 255, 255, 0.5) 71%, transparent 72%),
+    linear-gradient(160deg, transparent 22%, rgba(255, 255, 255, 0.4) 23%, transparent 24%);
+}
+
+@keyframes ice-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.ice-float { animation: ice-float 5s ease-in-out infinite; }
+
+@keyframes ice-scroll-line {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.ice-scroll-line { animation: ice-scroll-line 2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ice-float, .ice-scroll-line { animation: none; }
+}
