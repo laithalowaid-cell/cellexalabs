@@ -9,22 +9,19 @@ export default function NotFound() {
   return (
     <section className="pdp-scene" aria-labelledby="nf-title" style={{ alignContent: "center" }}>
       <div className="pdp-scene__sky" aria-hidden="true" />
-      <picture className="pdp-scene__layer" aria-hidden="true">
+      <picture className="pdp-scene__layer">
         <source media="(max-width: 767px)" srcSet="/mountain/far-sm.webp" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/mountain/far.webp" alt="" width={2400} height={1500} />
       </picture>
       <p className="pdp-scene__name display-xl" aria-hidden="true" style={{ fontSize: "min(15rem, 30vw)", top: "3%" }}>
         404
       </p>
-      <picture className="pdp-scene__layer" aria-hidden="true">
+      <picture className="pdp-scene__layer">
         <source media="(max-width: 767px)" srcSet="/mountain/massif-sm.webp" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/mountain/massif.webp" alt="" width={2400} height={1500} />
       </picture>
-      <picture className="pdp-scene__layer" aria-hidden="true">
+      <picture className="pdp-scene__layer">
         <source media="(max-width: 767px)" srcSet="/mountain/snow-sm.webp" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/mountain/snow.webp" alt="" width={2400} height={1500} />
       </picture>
       <div className="pdp-buy relative z-20 mx-auto mt-[38svh] max-w-md text-center">

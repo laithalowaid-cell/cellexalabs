@@ -4,7 +4,9 @@
 
 Online shop for cellexalabs.com, selling to the UAE. Prices are in AED. Built with Next.js 16, React 19, TypeScript and Tailwind CSS 4.
 
-There is no database, admin panel, or online payment. Products and prices live in code. Customers fill a cart and checkout form, and the order opens as a WhatsApp message to the business. The cart is stored in the visitor's browser. No environment variables are required.
+There is no database or online payment. Products and prices live in code. Customers fill a cart and checkout form, tick that they accept the Terms of Sale, Privacy Notice and Research Use Only policy, and the order opens as a WhatsApp message to the business. The cart is stored in the visitor's browser.
+
+Customer reviews are the one stored feature: they are saved in a private Vercel Blob store (`cellexalabs-reviews`) and only appear on the site after the owner approves them at `/reviews/manage`. Two environment variables are set in Vercel: `BLOB_READ_WRITE_TOKEN` (added by the store) and `REVIEWS_ADMIN_KEY` (the owner's key for the approval page). Without them the site still builds and runs; the review form just says reviews are not open.
 
 ## Working with the owner
 
@@ -43,6 +45,9 @@ npm run lint
 | See-through pen and vial images | `public/pens/`, `public/vials/`, looked up by `src/lib/pens.ts`. Add a cut-out when you add a product photo, or the site falls back to the original photo |
 | Smooth scroll, reveals, page transition | `src/engine/` (GSAP + Lenis). Text reveals use `data-split`, blocks use `data-reveal` |
 | Design rules (colours, type, motion) | `DESIGN.md` |
+| Reviews: form, testimonials, owner approval page | `src/components/ReviewForm.tsx`, `src/components/Testimonials.tsx`, `src/app/reviews/` (server actions, `/reviews/manage`), storage in `src/lib/reviews.ts` |
+| Terms checkbox at checkout | `agreed` in `src/lib/checkout.ts`, the checkbox in `src/components/CheckoutForm.tsx` |
+| Security headers (CSP and others) | `next.config.ts` |
 | Menu and footer | `src/components/Header.tsx`, `src/components/Footer.tsx` |
 | Colours and shared styles | `src/app/globals.css` |
 | Site title and social sharing text | `src/app/layout.tsx` |

@@ -106,9 +106,8 @@ export default function ProductDetail({ product }: { product: Product }) {
       {/* ===== Scene: the product at the summit ===== */}
       <section ref={scene} className="pdp-scene" aria-labelledby="pdp-title">
         <div className="pdp-scene__sky" aria-hidden="true" />
-        <picture data-layer="far" className="pdp-scene__layer" aria-hidden="true">
+        <picture data-layer="far" className="pdp-scene__layer">
           <source media="(max-width: 767px)" srcSet="/mountain/far-sm.webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/mountain/far.webp" alt="" width={2400} height={1500} />
         </picture>
         <p
@@ -121,14 +120,12 @@ export default function ProductDetail({ product }: { product: Product }) {
             <span key={i}>{c === " " ? " " : c}</span>
           ))}
         </p>
-        <picture data-layer="massif" className="pdp-scene__layer" aria-hidden="true">
+        <picture data-layer="massif" className="pdp-scene__layer">
           <source media="(max-width: 767px)" srcSet="/mountain/massif-sm.webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/mountain/massif.webp" alt="" width={2400} height={1500} fetchPriority="high" />
         </picture>
-        <picture data-layer="snow" className="pdp-scene__layer" aria-hidden="true">
+        <picture data-layer="snow" className="pdp-scene__layer">
           <source media="(max-width: 767px)" srcSet="/mountain/snow-sm.webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/mountain/snow.webp" alt="" width={2400} height={1500} />
         </picture>
         <Snowfall density={0.7} className="z-[12]" />

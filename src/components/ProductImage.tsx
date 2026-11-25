@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useCallback, useState } from "react";
 import { PenRender } from "./PenRender";
 
 /**
@@ -26,16 +26,17 @@ export function ProductImage({
   penClassName?: string;
   imgClassName?: string;
 }) {
-  const [failed, setFailed] = useState(false);
-  const ref = useRef<HTMLImageElement>(null);
-
-  // reset error state when the source changes (e.g. switching variants), and
-  // catch images that already failed before React hydrated/attached onError.
-  useEffect(() => {
-    setFailed(false);
-    const el = ref.current;
-    if (el && el.complete && el.naturalWidth === 0) setFailed(true);
-  }, [src]);
+  // Failure is remembered per source, so switching variants starts fresh without an effect.
+  const [failedSrc, setFailedSrc] = useState<string | undefined>();
+  const failed = Boolean(src) && failedSrc === src;
+  const setFailed = useCallback(() => setFailedSrc(src), [src]);
+  // Catch images that already failed before React attached onError.
+  const ref = useCallback(
+    (el: HTMLImageElement | null) => {
+      if (el && el.complete && el.naturalWidth === 0) setFailedSrc(src);
+    },
+    [src],
+  );
 
   if (!src || failed) {
     return (
@@ -53,9 +54,9 @@ export function ProductImage({
       alt={`${name}${dose ? ` ${dose}` : ""} injection pen`}
       className={imgClassName}
       loading="lazy"
-      onError={() => setFailed(true)}
+      onError={setFailed}
       onLoad={(e) => {
-        if ((e.currentTarget as HTMLImageElement).naturalWidth === 0) setFailed(true);
+        if ((e.currentTarget as HTMLImageElement).naturalWidth === 0) setFailed();
       }}
     />
   );

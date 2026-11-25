@@ -26,7 +26,8 @@ export default function CartDrawer() {
     if (typeof window === "undefined") return EMPTY_DETAILS;
     try {
       const saved = localStorage.getItem(DETAILS_KEY);
-      return saved ? { ...EMPTY_DETAILS, ...JSON.parse(saved) } : EMPTY_DETAILS;
+      // Agreement is asked for on every order, so it is never restored.
+      return saved ? { ...EMPTY_DETAILS, ...JSON.parse(saved), agreed: false } : EMPTY_DETAILS;
     } catch {
       return EMPTY_DETAILS;
     }
@@ -67,7 +68,7 @@ export default function CartDrawer() {
     }
 
     try {
-      localStorage.setItem(DETAILS_KEY, JSON.stringify(details));
+      localStorage.setItem(DETAILS_KEY, JSON.stringify({ ...details, agreed: false }));
     } catch {}
 
     // A real, unique reference for this order, sent in the WhatsApp message so

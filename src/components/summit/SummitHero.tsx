@@ -91,9 +91,8 @@ export default function SummitHero({ pen }: { pen: HeroPen }) {
         <div data-sky className="summit__sky absolute inset-0" aria-hidden="true" />
 
         {/* Far ridge */}
-        <picture data-layer="far" className="summit__layer" aria-hidden="true">
+        <picture data-layer="far" className="summit__layer">
           <source media="(max-width: 767px)" srcSet="/mountain/far-sm.webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/mountain/far.webp" alt="" width={2400} height={1500} />
         </picture>
 
@@ -105,16 +104,14 @@ export default function SummitHero({ pen }: { pen: HeroPen }) {
         </p>
 
         {/* Massif */}
-        <picture data-layer="massif" className="summit__layer" aria-hidden="true">
+        <picture data-layer="massif" className="summit__layer">
           <source media="(max-width: 767px)" srcSet="/mountain/massif-sm.webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/mountain/massif.webp" alt="" width={2400} height={1500} fetchPriority="high" />
         </picture>
 
         {/* Snowfield */}
-        <picture data-layer="snow" className="summit__layer" aria-hidden="true">
+        <picture data-layer="snow" className="summit__layer">
           <source media="(max-width: 767px)" srcSet="/mountain/snow-sm.webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/mountain/snow.webp" alt="" width={2400} height={1500} />
         </picture>
         <div className="summit__ground" aria-hidden="true" />

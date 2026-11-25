@@ -28,6 +28,8 @@ export interface CheckoutDetails {
   emirate: string;
   address: string;
   payment: string;
+  /** Ticked "I agree" to the Terms of Sale, Privacy Notice and research-use policy. Never saved between orders. */
+  agreed: boolean;
 }
 
 export const EMPTY_DETAILS: CheckoutDetails = {
@@ -35,6 +37,7 @@ export const EMPTY_DETAILS: CheckoutDetails = {
   emirate: "",
   address: "",
   payment: "",
+  agreed: false,
 };
 
 export type CheckoutErrors = Partial<Record<keyof CheckoutDetails, string>>;
@@ -53,6 +56,9 @@ export function validateCheckout(d: CheckoutDetails): CheckoutErrors {
 
   if (!PAYMENT_METHODS.some((p) => p.value === d.payment))
     e.payment = "Please choose a payment method.";
+
+  if (d.agreed !== true)
+    e.agreed = "Please confirm you agree to the Terms of Sale, Privacy Notice and research-use policy.";
 
   return e;
 }

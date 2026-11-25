@@ -115,6 +115,40 @@ export default function CheckoutForm({
         {err(errors.payment)}
       </fieldset>
 
+      <div>
+        <label
+          className={`flex cursor-pointer items-start gap-3 rounded-card border p-3.5 text-[0.8rem] leading-relaxed text-ink transition-colors ${
+            errors.agreed ? "border-red-600" : details.agreed ? "border-rosegold bg-blush" : "border-line"
+          }`}
+        >
+          <input
+            id="co-agree"
+            type="checkbox"
+            checked={details.agreed}
+            onChange={(e) => onChange({ agreed: e.target.checked })}
+            aria-invalid={Boolean(errors.agreed)}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--color-plum)]"
+          />
+          <span>
+            I have read and agree to the{" "}
+            <a href="/terms" target="_blank" rel="noopener" className="underline underline-offset-2">
+              Terms of Sale
+            </a>
+            ,{" "}
+            <a href="/privacy-policy" target="_blank" rel="noopener" className="underline underline-offset-2">
+              Privacy Notice
+            </a>{" "}
+            and{" "}
+            <a href="/compliance" target="_blank" rel="noopener" className="underline underline-offset-2">
+              Research Use Only policy
+            </a>
+            . I confirm I am 21 or older and that these products are for laboratory research use only, not for
+            human or animal consumption.
+          </span>
+        </label>
+        {err(errors.agreed)}
+      </div>
+
       <p className="text-[0.7rem] leading-relaxed text-ink-soft">
         These details are added to the WhatsApp message you send us — they are not
         submitted to this website or stored on our servers.

@@ -8,6 +8,10 @@ import PenAnatomy from "@/components/summit/PenAnatomy";
 import PenRange from "@/components/summit/PenRange";
 import Snowfall from "@/components/summit/Snowfall";
 import { ArrowRight } from "@/components/icons";
+import Testimonials from "@/components/Testimonials";
+
+// Re-check approved reviews at most once an hour; approving a review refreshes the page at once.
+export const revalidate = 3600;
 
 /** The pen in the hero. Name, dose and price come from products.ts. */
 const HERO_PEN_ID = "retatrutide";
@@ -138,6 +142,8 @@ export default function Home() {
           })}
         </ul>
       </section>
+
+      <Testimonials />
 
       {/* ============== SUMMIT CLOSER ============== */}
       <section className="closer relative overflow-clip" aria-labelledby="closer-title">

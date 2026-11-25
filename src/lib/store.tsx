@@ -54,6 +54,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   // Hydrate from localStorage
   useEffect(() => {
+    // Intentional: browser storage only exists after mount; reading it during render would make the
+    // server and browser HTML differ. This runs once.
+    /* eslint-disable react-hooks/set-state-in-effect */
     try {
       const c = localStorage.getItem(CART_KEY);
       if (c) setCart(JSON.parse(c));
@@ -62,6 +65,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setVerified(false);
     }
     setHydrated(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   useEffect(() => {
@@ -182,6 +186,9 @@ export function buildWhatsAppOrder(
           `Emirate: ${details.emirate}`,
           `Address: ${details.address.trim().replace(/\s*\n\s*/g, ", ")}`,
           `Payment: ${details.payment}`,
+          ...(details.agreed
+            ? ["", "✓ I have read and agree to the Terms of Sale, Privacy Notice and Research Use Only policy."]
+            : []),
         ]
       : []),
     ...(orderRef ? ["", `Order Ref: ${orderRef}`] : []),
