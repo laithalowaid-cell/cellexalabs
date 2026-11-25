@@ -58,7 +58,7 @@ export default function BundlesPage() {
         </p>
       </section>
 
-      <p className="mt-12 text-center text-xs text-ink-soft/70">
+      <p className="mt-12 text-center text-xs text-ink-soft">
         <Link href="/compliance" className="underline-offset-4 hover:text-plum hover:underline">
           Research Use Only — see our compliance policy
         </Link>

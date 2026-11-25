@@ -51,7 +51,7 @@ export default function Footer() {
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-plum hover:text-rosegold-deep"
+            className="mt-4 inline-flex items-center gap-2 py-1.5 text-sm font-semibold text-plum hover:text-rosegold-deep"
           >
             <WhatsAppIcon width={18} height={18} />
             {WHATSAPP_DISPLAY}
@@ -78,21 +78,21 @@ export default function Footer() {
             {" · "}
             <Link
               href="/privacy-policy"
-              className="underline-offset-4 hover:text-plum hover:underline"
+              className="inline-block py-1.5 underline-offset-4 hover:text-plum hover:underline"
             >
               Privacy Notice
             </Link>
             {" · "}
             <Link
               href="/terms"
-              className="underline-offset-4 hover:text-plum hover:underline"
+              className="inline-block py-1.5 underline-offset-4 hover:text-plum hover:underline"
             >
               Terms of Sale
             </Link>
             {" · "}
             <Link
               href="/compliance"
-              className="underline-offset-4 hover:text-plum hover:underline"
+              className="inline-block py-1.5 underline-offset-4 hover:text-plum hover:underline"
             >
               Compliance
             </Link>

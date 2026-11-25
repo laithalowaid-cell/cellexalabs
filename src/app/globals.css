@@ -385,9 +385,9 @@ body { overflow-x: clip; }
 .motion .summit__next { display: block; opacity: 0; transform: translateY(10px); }
 @media (max-width: 767px) {
   .summit { height: 180svh; }
-  .summit__wordmark { top: 15svh; font-size: 19vw; }
+  .summit__wordmark { top: 15svh; font-size: 13vw; }
   .summit__pen { width: 96vw; margin-left: -48vw; bottom: 47svh; }
-  .summit__copy { padding-bottom: 5.5rem; }
+  .summit__copy { padding-bottom: 7.5rem; }
 }
 /* Without motion the stage is a still poster and the copy stays readable. */
 html:not(.motion) .summit { height: auto; }
