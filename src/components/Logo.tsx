@@ -1,43 +1,32 @@
 /**
- * Cellexa Labs logo.
- *
- * The mark is an open molecular ring that reads as a "C": a hexagon (the ring of a peptide's
- * aromatic residue, with its inner bond) left open on one side, ending in two glacier-blue nodes,
- * the two ends of a peptide chain. Drawn as inline SVG, so it is sharp at every size.
+ * Cellexa Labs logo: the original "CL" monogram with the six-node molecule and the
+ * CELLEXA / LABS wordmark, redrawn as crisp vector artwork (public/logo/*.svg).
+ * Regenerate the files with scripts/build-logo.py.
  */
 
-const RING = "M79.18 32 L48 14 L16.82 32 L16.82 68 L48 86 L79.18 68";
-const BOND = "M28.08 42.5 L28.08 57.5";
+const LOCKUP_RATIO = 831 / 200; // width / height of cellexa-logo.svg
+const MARK_RATIO = 520 / 528; // width / height of cellexa-mark.svg
 
+/** The "CL + molecule" monogram on its own. */
 export function LogoMark({
   size = 32,
   className,
   inverse = false,
-  title,
 }: {
   size?: number;
   className?: string;
-  /** White ring for dark backgrounds. */
   inverse?: boolean;
-  title?: string;
 }) {
-  const ink = inverse ? "#ffffff" : "var(--color-plum-deep)";
   return (
-    <svg
-      width={size}
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={inverse ? "/logo/cellexa-mark-white.svg" : "/logo/cellexa-mark.svg"}
+      alt=""
+      aria-hidden="true"
+      width={Math.round(size * MARK_RATIO)}
       height={size}
-      viewBox="6 6 88 88"
       className={className}
-      role={title ? "img" : undefined}
-      aria-hidden={title ? undefined : true}
-      aria-label={title}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d={RING} fill="none" stroke={ink} strokeWidth={8.5} strokeLinejoin="round" strokeLinecap="round" />
-      <path d={BOND} stroke={ink} strokeWidth={5.5} strokeLinecap="round" />
-      <circle cx={79.18} cy={32} r={8.2} fill="var(--color-rosegold-deep)" />
-      <circle cx={79.18} cy={68} r={8.2} fill="var(--color-rosegold-deep)" />
-    </svg>
+    />
   );
 }
 
@@ -46,27 +35,27 @@ export function DnaMark({ className, size = 30 }: { className?: string; size?: n
   return <LogoMark size={size} className={className} />;
 }
 
-/** Horizontal lockup for the header and footer: mark + CELLEXA + LABS. `size` is the wordmark height. */
+/** Horizontal lockup for the header and footer. `size` ≈ the old text size; the logo renders ~2.3× that tall. */
 export function Logo({ size = 24, inverse = false }: { size?: number; inverse?: boolean }) {
+  const h = Math.round(size * 2.3);
   return (
-    <span className="logo-lockup" style={{ fontSize: size }}>
-      <LogoMark size={size * 1.55} inverse={inverse} />
-      <span className={`logo-lockup__word ${inverse ? "text-white" : "text-plum-deep"}`}>
-        CELLEXA
-        <span className="logo-lockup__labs">LABS</span>
-      </span>
-      <span className="sr-only">Cellexa Labs</span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={inverse ? "/logo/cellexa-logo-white.svg" : "/logo/cellexa-logo.svg"}
+      alt="Cellexa Labs"
+      width={Math.round(h * LOCKUP_RATIO)}
+      height={h}
+      className="block h-auto max-w-full"
+      style={{ height: h, width: "auto" }}
+    />
   );
 }
 
-/** Stacked wordmark (kept for older imports). */
+/** Wordmark (kept for older imports). */
 export function Wordmark({ className = "" }: { className?: string; tagline?: boolean }) {
   return (
-    <span className={`logo-lockup ${className}`}>
-      <span className="logo-lockup__word text-plum-deep">
-        CELLEXA<span className="logo-lockup__labs">LABS</span>
-      </span>
+    <span className={className}>
+      <Logo size={20} />
     </span>
   );
 }

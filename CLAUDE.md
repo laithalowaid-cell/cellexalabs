@@ -48,6 +48,7 @@ npm run lint
 | Reviews: form, testimonials, owner approval page | `src/components/ReviewForm.tsx`, `src/components/Testimonials.tsx`, `src/app/reviews/` (server actions, `/reviews/manage`), storage in `src/lib/reviews.ts` |
 | Terms checkbox at checkout | `agreed` in `src/lib/checkout.ts`, the checkbox in `src/components/CheckoutForm.tsx` |
 | Security headers (CSP and others) | `next.config.ts` |
+| Logo (original CL monogram, redrawn as vector) | `public/logo/*.svg`, shown by `src/components/Logo.tsx`; rebuild with `scripts/build-logo.py` |
 | Menu and footer | `src/components/Header.tsx`, `src/components/Footer.tsx` |
 | Colours and shared styles | `src/app/globals.css` |
 | Site title and social sharing text | `src/app/layout.tsx` |
