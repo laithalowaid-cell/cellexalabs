@@ -29,7 +29,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-4 px-4 sm:px-10 xl:px-16">
         {/* Logo */}
         <Link href="/" className="shrink-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-x-1" aria-label="Cellexa Labs home">
           <Logo size={24} />

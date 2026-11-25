@@ -91,7 +91,7 @@ export default async function CoaPage({
         </p>
       </div>
 
-      <p className="mt-8 text-center text-xs text-ink-soft/70">
+      <p className="mt-8 text-center text-xs text-ink-soft">
         <Link href={`/shop/${product.id}`} className="underline-offset-4 hover:text-plum hover:underline">
           ← Back to {product.name}
         </Link>

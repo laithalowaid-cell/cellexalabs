@@ -97,7 +97,7 @@ export default function AgeGate() {
           Exit
         </a>
 
-        <p className="mt-6 text-[0.65rem] uppercase tracking-[0.18em] text-ink-soft/70">
+        <p className="mt-6 text-[0.65rem] uppercase tracking-[0.18em] text-ink-soft">
           Cellexa Labs · Research Use Only
         </p>
       </div>

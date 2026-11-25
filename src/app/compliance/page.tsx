@@ -34,7 +34,7 @@ export default function CompliancePage() {
       </Section>
 
       <Section title="Research-Use-Only Acknowledgement">
-        <p className="text-xs uppercase tracking-[0.14em] text-ink-soft/70">
+        <p className="text-xs uppercase tracking-[0.14em] text-ink-soft">
           Last updated 29 May 2026 · Effective 29 May 2026
         </p>
         <p>
@@ -140,7 +140,7 @@ export default function CompliancePage() {
         Cellexa Labs isn&rsquo;t for you. We don&rsquo;t flex on this.
       </p>
 
-      <p className="mt-8 text-center text-xs text-ink-soft/70">
+      <p className="mt-8 text-center text-xs text-ink-soft">
         <Link href="/terms" className="underline-offset-4 hover:text-plum hover:underline">
           Terms of Sale
         </Link>

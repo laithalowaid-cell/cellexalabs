@@ -46,8 +46,7 @@ export default function ProductDetail({ product }: { product: Product }) {
         .timeline()
         .from(q("[data-layer]"), { yPercent: 8, duration: 1.8, stagger: 0.06, ease: ease.out }, 0)
         .from(q("[data-name] span"), { yPercent: 105, duration: 1.3, stagger: 0.035, ease: ease.out }, 0.1)
-        .from(q("[data-pen-glide]"), { xPercent: 60, autoAlpha: 0, duration: 1.9, ease: ease.out }, 0.3)
-        .from(q("[data-buy]"), { y: 40, autoAlpha: 0, duration: 1.2, ease: ease.out }, 0.6),
+        .from(q("[data-pen-glide]"), { xPercent: 60, autoAlpha: 0, duration: 1.9, ease: ease.out }, 0.3),
       0,
     );
     gsap.to(q("[data-pen-float]"), { y: -8, duration: 2.8, ease: "sine.inOut", yoyo: true, repeat: -1 });
@@ -135,7 +134,7 @@ export default function ProductDetail({ product }: { product: Product }) {
         <Snowfall density={0.7} className="z-[12]" />
 
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="pdp-scene__crumbs font-data">
+        <nav aria-label="Breadcrumb" className="pdp-scene__crumbs font-data [&_a]:py-1.5">
           <Link href="/" className="link-glide">Home</Link>
           <span aria-hidden="true">/</span>
           <Link href={isPen ? "/shop?form=pen" : "/shop?form=vial"} className="link-glide">

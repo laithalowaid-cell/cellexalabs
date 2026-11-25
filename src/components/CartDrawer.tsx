@@ -165,7 +165,7 @@ export default function CartDrawer() {
                       </div>
                       <button
                         onClick={() => removeFromCart(l.productId, l.variantLabel)}
-                        className="text-ink-soft/60 hover:text-plum"
+                        className="text-ink-soft hover:text-plum"
                         aria-label="Remove"
                       >
                         <CloseIcon width={16} height={16} />

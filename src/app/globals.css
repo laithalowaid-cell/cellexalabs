@@ -372,7 +372,7 @@ body { overflow-x: clip; }
   padding: 0 max(1rem, env(safe-area-inset-left)) 2rem max(1rem, env(safe-area-inset-left));
 }
 @media (min-width: 640px) { .summit__copy { padding: 0 2.5rem 3rem; } }
-@media (min-width: 1280px) { .summit__copy { padding: 0 4rem 3.5rem; } }
+@media (min-width: 1280px) { .summit__copy { padding: 0 7rem 3.5rem 4rem; } }
 .summit__meta { display: none; grid-template-columns: repeat(4, auto); gap: 0.4rem 2rem; font-size: 0.8rem; }
 .summit__meta dt { color: var(--color-ink-soft); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.68rem; }
 .summit__meta dd { color: var(--color-plum-deep); font-weight: 600; margin-top: 0.2rem; }
@@ -386,12 +386,12 @@ body { overflow-x: clip; }
 @media (max-width: 767px) {
   .summit { height: 180svh; }
   .summit__wordmark { top: 15svh; font-size: 13vw; }
-  .summit__pen { width: 96vw; margin-left: -48vw; bottom: 47svh; }
+  .summit__pen { width: 96vw; margin-left: -48vw; bottom: 60svh; }
   .summit__copy { padding-bottom: 7.5rem; }
 }
 /* Without motion the stage is a still poster and the copy stays readable. */
 html:not(.motion) .summit { height: auto; }
-html:not(.motion) .summit__stage { position: relative; }
+html:not(.motion) .summit__stage { position: relative; top: 0; }
 
 /* ===========================================================
    Pen anatomy (components/summit/PenAnatomy.tsx)
@@ -523,7 +523,8 @@ html:not(.motion) .anatomy__part { grid-area: auto; }
   content: ""; position: absolute; inset: 0; z-index: -1; background: var(--color-plum-deep);
   transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.dose-pill:hover { border-color: var(--color-rosegold-deep); }
+.dose-pill { transition: color 0.4s ease, border-color 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease; }
+.dose-pill:hover { border-color: var(--color-rosegold-deep); background-color: var(--color-blush-deep); transform: translateY(-2px); }
 .dose-pill.is-on { color: #fff; border-color: var(--color-plum-deep); }
 .dose-pill.is-on::before { transform: scaleX(1); }
 @keyframes tick-in { from { transform: translateY(40%); opacity: 0; } to { transform: none; opacity: 1; } }
@@ -550,3 +551,11 @@ html:not(.motion) .anatomy__part { grid-area: auto; }
 .product-card__media img { filter: drop-shadow(0 16px 14px rgba(18, 40, 90, 0.16)); transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
 .product-card:hover .product-card__media img { transform: translateX(14px); }
 .product-card:hover .product-card__media img.max-h-full { transform: translateY(-8px); }
+
+.btn-primary, .btn-ghost { white-space: nowrap; }
+.closer__snow { position: absolute; inset: 0; }
+/* Snow-light fade behind the hero copy so body text stays readable over rock */
+.summit__copy::before {
+  content: ""; position: absolute; inset: -40% 0 0 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.72) 45%, rgba(255,255,255,0.9) 100%);
+}

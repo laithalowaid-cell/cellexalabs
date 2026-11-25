@@ -31,6 +31,7 @@ export default function SearchBox({ compact = false }: { compact?: boolean }) {
       <div className="flex items-center gap-2 rounded-full border border-line bg-mist/60 px-3.5 py-2 transition-colors focus-within:border-rosegold focus-within:bg-white">
         <SearchIcon width={16} height={16} className="text-ink-soft" />
         <input
+          aria-label="Search peptides"
           value={q}
           onChange={(e) => {
             setQ(e.target.value);

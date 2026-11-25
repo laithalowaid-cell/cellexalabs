@@ -145,6 +145,8 @@ export default function Home() {
         <div className="closer__mountain" aria-hidden="true" data-parallax="0.08">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/mountain/massif.webp" alt="" loading="lazy" width={2400} height={1500} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/mountain/snow.webp" alt="" loading="lazy" width={2400} height={1500} className="closer__snow" />
         </div>
         <Snowfall density={0.6} className="z-10" />
         <div className="relative z-20 mx-auto max-w-[1440px] px-4 pb-20 pt-28 sm:px-10 xl:px-16">

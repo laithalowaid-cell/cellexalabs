@@ -14,13 +14,18 @@ export default function NotFound() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/mountain/far.webp" alt="" width={2400} height={1500} />
       </picture>
-      <p className="pdp-scene__name display-xl" aria-hidden="true" style={{ fontSize: "min(26rem, 40vw)", top: "6%" }}>
+      <p className="pdp-scene__name display-xl" aria-hidden="true" style={{ fontSize: "min(15rem, 30vw)", top: "3%" }}>
         404
       </p>
       <picture className="pdp-scene__layer" aria-hidden="true">
         <source media="(max-width: 767px)" srcSet="/mountain/massif-sm.webp" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/mountain/massif.webp" alt="" width={2400} height={1500} />
+      </picture>
+      <picture className="pdp-scene__layer" aria-hidden="true">
+        <source media="(max-width: 767px)" srcSet="/mountain/snow-sm.webp" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/mountain/snow.webp" alt="" width={2400} height={1500} />
       </picture>
       <div className="pdp-buy relative z-20 mx-auto mt-[38svh] max-w-md text-center">
         <h1 id="nf-title" className="font-display text-3xl font-semibold text-plum-deep">

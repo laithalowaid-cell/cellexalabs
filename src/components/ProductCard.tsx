@@ -73,7 +73,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
       {/* Body */}
       <div className="flex flex-1 flex-col px-4 pb-4 pt-3">
-        <h3 className="font-display text-lg font-medium leading-tight text-ink">{product.name}</h3>
+        <h2 className="font-display text-lg font-medium leading-tight text-ink">{product.name}</h2>
         {product.subtitle && (
           <p className="mt-0.5 line-clamp-1 text-[0.72rem] text-ink-soft">{product.subtitle}</p>
         )}

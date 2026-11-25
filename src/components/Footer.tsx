@@ -9,7 +9,7 @@ const FOCUS_KEYS: Focus[] = ["weightloss", "growth", "recovery", "antiaging", "w
 export default function Footer() {
   return (
     <footer className="mt-24 border-t border-line bg-blush/40">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-[1440px] gap-10 px-4 py-14 sm:px-10 md:grid-cols-4 xl:px-16">
         <div className="md:col-span-1">
           <Logo size={24} />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-soft">
@@ -64,7 +64,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-line">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] px-4 pb-28 pt-6 sm:px-10 md:pb-6 xl:px-16">
           <p className="rounded-xl bg-white/70 px-4 py-3 text-center text-[0.7rem] leading-relaxed text-ink-soft">
             <strong className="text-ink">For Laboratory Research Use Only</strong> — All Cellexa
             Peptides products are intended for in vitro laboratory research and are not for human
