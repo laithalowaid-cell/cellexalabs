@@ -716,7 +716,7 @@ export const PRODUCTS: Product[] = [
     mechanism:
       "Retatrutide, 99.4% purity, for laboratory research use. A synthetic peptide investigated in vitro and in animal models for agonist activity at GLP-1, GIP, and glucagon receptors.",
     variants: [
-      { label: "30 mg", mg: 30, price: 540, image: "/products/retatrutide-vial-30mg.png" },
+      { label: "30 mg", mg: 30, price: 610, image: "/products/retatrutide-vial-30mg.png" },
       { label: "60 mg", mg: 60, price: 1079, image: "/products/retatrutide-vial-60mg.png" },
     ],
     molecular: { formula: "C221H342N46O68", weight: "4731.3 g/mol", cas: "2381089-83-2" },
