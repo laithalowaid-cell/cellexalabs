@@ -155,7 +155,7 @@ export default function Home() {
           <img src="/mountain/snow.webp" alt="" loading="lazy" width={2400} height={1500} className="closer__snow" />
         </div>
         <Snowfall density={0.6} className="z-10" />
-        <div className="relative z-20 mx-auto max-w-[1440px] px-4 pb-20 pt-28 sm:px-10 xl:px-16">
+        <div className="relative z-20 mx-auto max-w-[1440px] px-4 pb-20 pt-20 sm:px-10 sm:pt-24 xl:px-16">
           <h2 id="closer-title" className="display-xl max-w-5xl text-[clamp(2.6rem,8vw,8rem)] text-white" data-split="lines">
             Tested at the top
           </h2>
