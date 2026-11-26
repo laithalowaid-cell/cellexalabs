@@ -22,6 +22,7 @@ export type FilterForm = Form | "bundle";
 const FORMS: { key: FilterForm; label: string }[] = [
   { key: "pen", label: "Injection Pens" },
   { key: "vial", label: "Vials" },
+  { key: "spray", label: "Nasal Sprays" },
   { key: "bundle", label: "Bundles" },
 ];
 

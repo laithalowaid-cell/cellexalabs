@@ -1,6 +1,7 @@
 // Transparent cut-outs of the product photos, so pens and vials can float over the mountain.
 // Pens: every /products/*.png that is not a vial has a cut-out at /pens/<same file>.
 // Vials: only the four listed below have clean cut-outs; others fall back to the original photo.
+// Sprays: every *-spray-* image has a cut-out at /sprays/<same name>.webp.
 import type { Product } from "./products";
 import SIZES from "./cutout-sizes.json";
 
@@ -15,6 +16,7 @@ const VIAL_CUTOUTS = new Set([
 export function cutout(image?: string): string | undefined {
   if (!image?.startsWith("/products/")) return undefined;
   const base = image.slice("/products/".length).replace(/\.png$/, "");
+  if (base.includes("spray")) return `/sprays/${base}.webp`;
   if (base.includes("vial")) return VIAL_CUTOUTS.has(base) ? `/vials/${base}.webp` : undefined;
   return `/pens/${base}.webp`;
 }

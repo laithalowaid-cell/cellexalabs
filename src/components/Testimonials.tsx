@@ -19,7 +19,7 @@ export default async function Testimonials() {
   const reviews = (await getPublished()).slice(0, 12);
   const products = PRODUCTS.map((p) => ({
     id: p.id,
-    label: `${p.name}${p.form === "vial" ? " (vial)" : " (pen)"}`,
+    label: `${p.name} (${p.form === "vial" ? "vial" : p.form === "spray" ? "nasal spray" : "pen"})`,
   })).sort((a, b) => a.label.localeCompare(b.label));
   const avg = reviews.length ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length : 0;
 

@@ -21,11 +21,11 @@ export default function RangeRow({ product: p }: { product: Product }) {
         <span className="range-row__text">
           <span className="font-display text-2xl font-semibold text-plum-deep sm:text-[2.1rem]">{p.name}</span>
           <span className="font-data mt-1 block text-[0.82rem] text-ink-soft">
-            {p.form === "vial" ? "Vial · " : "Pen · "}
+            {p.form === "vial" ? "Vial · " : p.form === "spray" ? "Nasal spray · " : "Pen · "}
             {doseList(p)}
           </span>
         </span>
-        <span className={`range-row__pen ${p.form === "vial" ? "is-vial" : ""}`} aria-hidden="true">
+        <span className={`range-row__pen ${p.form === "pen" ? "" : "is-vial"}`} aria-hidden="true">
           {(img ?? src) && (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={img ?? src} alt="" loading="lazy" {...cutoutSize(img)} className={img ? "" : "mix-blend-multiply"} />

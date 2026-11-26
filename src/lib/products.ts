@@ -46,7 +46,7 @@ export const FOCUS_META: Record<
   },
 };
 
-export type Form = "pen" | "vial";
+export type Form = "pen" | "vial" | "spray";
 
 export interface Variant {
   /** Display label e.g. "20 mg" or "30 mg + 5 mg" */
@@ -839,6 +839,52 @@ export const PRODUCTS: Product[] = [
       "PT-141 (Bremelanotide), 99% purity, for laboratory research use. A cyclic heptapeptide studied in animal models for its role in melanocortin-receptor signalling.",
     variants: [{ label: "10 mg", mg: 10, price: 550, image: "/products/pt-141-vial-10mg.png" }],
     molecular: { sequence: "Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-OH", formula: "C50H68N14O10", weight: "1025.2 g/mol", cas: "189691-06-3" },
+    purity: "99%+",
+  },
+  // ===== Nasal sprays =====
+  {
+    id: "pt-141-spray",
+    name: "PT-141",
+    subtitle: "Bremelanotide — nasal spray",
+    form: "spray",
+    focus: ["wellness"],
+    cap: CAP.slate,
+    summary: "Cyclic heptapeptide (melanocortin agonist)",
+    category: "peptides",
+    mechanism:
+      "PT-141 (Bremelanotide), 99% purity, for laboratory research use. A cyclic heptapeptide studied in animal models for its role in melanocortin-receptor signalling.",
+    variants: [{ label: "10 mg", mg: 10, price: 849, image: "/products/pt-141-spray-10mg.png" }],
+    molecular: { sequence: "Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-OH", formula: "C50H68N14O10", weight: "1025.2 g/mol", cas: "189691-06-3" },
+    purity: "99%+",
+  },
+  {
+    id: "selank-spray",
+    name: "Selank",
+    subtitle: "Nasal spray",
+    form: "spray",
+    focus: ["wellness"],
+    cap: CAP.slate,
+    summary: "Synthetic heptapeptide (tuftsin analogue)",
+    category: "peptides",
+    mechanism:
+      "Selank, 99% purity, for laboratory research use. A synthetic heptapeptide analogue of tuftsin investigated in animal models for GABAergic and BDNF-related signalling.",
+    variants: [{ label: "10 mg", mg: 10, price: 750, image: "/products/selank-spray-10mg.png" }],
+    molecular: { sequence: "Thr-Lys-Pro-Arg-Pro-Gly-Pro", formula: "C33H57N11O9", weight: "751.9 g/mol", cas: "129954-34-3" },
+    purity: "99%+",
+  },
+  {
+    id: "semax-spray",
+    name: "Semax",
+    subtitle: "Nasal spray",
+    form: "spray",
+    focus: ["wellness"],
+    cap: CAP.slate,
+    summary: "Synthetic ACTH(4-10)-analogue heptapeptide",
+    category: "peptides",
+    mechanism:
+      "Semax, 99% purity, for laboratory research use. A synthetic ACTH(4-10)-analogue heptapeptide studied in vitro and in animal models for BDNF expression and neurotrophic signalling.",
+    variants: [{ label: "10 mg", mg: 10, price: 750, image: "/products/semax-spray-10mg.png" }],
+    molecular: { sequence: "Met-Glu-His-Phe-Pro-Gly-Pro", formula: "C37H51N9O10S", weight: "813.9 g/mol", cas: "80714-61-0" },
     purity: "99%+",
   },
 ];

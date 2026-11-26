@@ -21,6 +21,8 @@ const ANATOMY_PEN_ID = "retatrutide";
 const ANATOMY_PEN_DOSE = "30 mg";
 /** Vials with clean cut-outs, shown on the snow. */
 const VIAL_IDS = ["retatrutide-vial", "ghk-cu-vial", "mots-c-vial", "pt-141-vial"];
+/** Nasal sprays shown beside the vials. */
+const SPRAY_IDS = ["pt-141-spray", "selank-spray", "semax-spray"];
 
 const FOCUS_ORDER: Focus[] = ["weightloss", "growth", "recovery", "antiaging", "wellness"];
 
@@ -48,8 +50,9 @@ export default function Home() {
   const anatomy = find(ANATOMY_PEN_ID);
   const anatomyImage = (cutout(anatomy.variants.find((v) => v.label === ANATOMY_PEN_DOSE)?.image) ?? "").replace("/pens/", "/pens/hd/");
 
-  const vials = VIAL_IDS.map(find);
+  const vials = [...VIAL_IDS, ...SPRAY_IDS].map(find);
   const vialCount = PRODUCTS.filter((p) => p.form === "vial").length;
+  const sprayCount = PRODUCTS.filter((p) => p.form === "spray").length;
 
   return (
     <>
@@ -64,18 +67,24 @@ export default function Home() {
         <div className="mx-auto grid max-w-[1440px] items-end gap-10 px-4 py-24 sm:px-10 lg:grid-cols-[1fr_1.3fr] xl:px-16">
           <div>
             <h2 id="vials-title" className="display-xl text-[clamp(2.4rem,6.5vw,6rem)] text-plum-deep" data-split="lines">
-              Also in vials
+              Vials and nasal sprays
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-ink" data-reveal="up">
-              {vialCount} compounds as lyophilised powder in a sealed vial, for researchers who reconstitute
-              their own.
+              {vialCount} compounds as lyophilised powder in a sealed vial, for researchers who reconstitute their
+              own, and {sprayCount} as ready-to-use nasal sprays.
             </p>
-            <Link href="/shop?form=vial" className="btn-ghost mt-7" data-reveal="up">
-              Shop vials
-              <ArrowRight width={17} height={17} />
-            </Link>
+            <div className="mt-7 flex flex-wrap gap-3" data-reveal="up">
+              <Link href="/shop?form=vial" className="btn-ghost">
+                Shop vials
+                <ArrowRight width={17} height={17} />
+              </Link>
+              <Link href="/shop?form=spray" className="btn-ghost">
+                Shop nasal sprays
+                <ArrowRight width={17} height={17} />
+              </Link>
+            </div>
           </div>
-          <ul className="grid grid-cols-4 items-end gap-3 sm:gap-6">
+          <ul className="grid grid-cols-4 items-end gap-3 sm:grid-cols-7 sm:gap-5">
             {vials.map((v, i) => {
               const img = cutout(heroImage(v));
               return (
@@ -83,7 +92,7 @@ export default function Home() {
                   <Link href={`/shop/${v.id}`} className="vial-tile group block text-center">
                     {img && (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={img} alt={`${v.name} vial`} loading="lazy" {...cutoutSize(img)} className="mx-auto h-auto w-full max-w-[150px]" />
+                      <img src={img} alt={`${v.name} ${v.form === "spray" ? "nasal spray" : "vial"}`} loading="lazy" {...cutoutSize(img)} className="mx-auto h-auto w-full max-w-[150px]" />
                     )}
                     <span className="mt-3 block font-display text-sm font-semibold text-plum-deep sm:text-base">{v.name}</span>
                     <span className="font-data block text-xs text-ink-soft">{formatPrice(fromPrice(v))}</span>

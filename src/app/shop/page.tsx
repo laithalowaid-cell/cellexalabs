@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 import { Focus } from "@/lib/products";
 
 const VALID: Focus[] = ["weightloss", "growth", "recovery", "antiaging", "wellness"];
-const VALID_FORMS: FilterForm[] = ["pen", "vial", "bundle"];
+const VALID_FORMS: FilterForm[] = ["pen", "vial", "spray", "bundle"];
 
 export default async function ShopPage({
   searchParams,

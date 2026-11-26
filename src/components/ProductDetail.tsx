@@ -31,6 +31,8 @@ export default function ProductDetail({ product }: { product: Product }) {
   const firstVariant = useRef(true);
 
   const isPen = product.form === "pen";
+  const isSpray = product.form === "spray";
+  const formName = isPen ? "pre-filled pen" : isSpray ? "nasal spray" : "vial";
   const rawImage = variant.image ?? product.images?.[0];
   const clean = cutout(rawImage);
   const shown = clean ?? rawImage;
@@ -134,15 +136,15 @@ export default function ProductDetail({ product }: { product: Product }) {
         <nav aria-label="Breadcrumb" className="pdp-scene__crumbs font-data [&_a]:py-1.5">
           <Link href="/" className="link-glide">Home</Link>
           <span aria-hidden="true">/</span>
-          <Link href={isPen ? "/shop?form=pen" : "/shop?form=vial"} className="link-glide">
-            {isPen ? "Pens" : "Vials"}
+          <Link href={`/shop?form=${product.form}`} className="link-glide">
+            {isPen ? "Pens" : isSpray ? "Nasal sprays" : "Vials"}
           </Link>
           <span aria-hidden="true">/</span>
           <span aria-current="page">{product.name}</span>
         </nav>
 
         {/* The product */}
-        <div data-pen-glide className={`pdp-scene__product ${isPen ? "is-pen" : "is-vial"}`}>
+        <div data-pen-glide className={`pdp-scene__product ${isPen ? "is-pen" : isSpray ? "is-spray" : "is-vial"}`}>
           <div data-pen-float>
             <div ref={penRef}>
               {shown ? (
@@ -150,7 +152,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                 <img
                   key={shown}
                   src={shown}
-                  alt={`${product.name} ${variant.label} ${isPen ? "pre-filled pen" : "vial"}`}
+                  alt={`${product.name} ${variant.label} ${formName}`}
                   {...cutoutSize(clean)}
                   className={clean ? "" : "mix-blend-multiply"}
                 />
@@ -165,7 +167,7 @@ export default function ProductDetail({ product }: { product: Product }) {
         {/* Buy panel */}
         <div data-buy className="pdp-buy">
           <p className="font-data text-[0.7rem] uppercase tracking-[0.16em] text-rosegold-deep">
-            {isPen ? "Pre-filled pen · 240 clicks" : "Lyophilised vial"} · {product.category}
+            {isPen ? "Pre-filled pen · 240 clicks" : isSpray ? "Nasal spray" : "Lyophilised vial"} · {product.category}
           </p>
           <h1 id="pdp-title" className="font-display mt-2 text-[2.1rem] font-semibold leading-[1.02] text-plum-deep sm:text-5xl">
             {product.name}
@@ -252,8 +254,8 @@ export default function ProductDetail({ product }: { product: Product }) {
               {[
                 product.summary,
                 `≥ ${product.purity} purity (HPLC)`,
-                STORAGE_LABEL,
-                isPen ? "Pre-filled injection pen" : "Lyophilised powder, single sealed vial",
+                ...(isSpray ? [] : [STORAGE_LABEL]),
+                isPen ? "Pre-filled injection pen" : isSpray ? "Ready-to-use nasal spray" : "Lyophilised powder, single sealed vial",
               ].map((b) => (
                 <li key={b} className="flex items-start gap-3">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rosegold-deep" />
@@ -276,7 +278,7 @@ export default function ProductDetail({ product }: { product: Product }) {
             {[
               ["Dose", variant.label],
               ["Purity", product.purity],
-              ["Format", isPen ? "Pen, 2.4 mL, 240 clicks" : "Sealed vial"],
+              ["Format", isPen ? "Pen, 2.4 mL, 240 clicks" : isSpray ? "Nasal spray" : "Sealed vial"],
               ["Price", fmt(variant.price)],
             ].map(([k, v]) => (
               <div key={k}>
@@ -295,7 +297,8 @@ export default function ProductDetail({ product }: { product: Product }) {
                 ["profile", "Molecular profile"],
                 ["qa", "Quality assurance"],
                 // Vials are reconstituted and drawn on a syringe; pens ship pre-filled and are dialled in clicks.
-                ["recon", isPen ? "Pen dosing" : "Reconstitution"],
+                // Sprays have no calculator.
+                ...(isSpray ? [] : [["recon", isPen ? "Pen dosing" : "Reconstitution"]]),
               ] as [Tab, string][]
             ).map(([id, label]) => (
               <button
@@ -321,9 +324,9 @@ export default function ProductDetail({ product }: { product: Product }) {
                       ["Molecular mass", product.molecular.weight],
                       ["Molecular formula", product.molecular.formula],
                       ["Sequence", product.molecular.sequence],
-                      ["Form", isPen ? "Pre-filled injection pen" : "Lyophilised powder, single sealed vial"],
+                      ["Form", isPen ? "Pre-filled injection pen" : isSpray ? "Nasal spray" : "Lyophilised powder, single sealed vial"],
                       ["Purity", `≥ ${product.purity}`],
-                      ["Storage", STORAGE_SPEC],
+                      ["Storage", isSpray ? "As stated on the label" : STORAGE_SPEC],
                       ["COA", "Available on request"],
                     ].map(([k, v]) => (
                       <tr key={k} className="border-b border-line">

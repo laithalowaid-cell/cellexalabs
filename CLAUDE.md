@@ -30,7 +30,7 @@ npm run lint
 
 | To change | Edit |
 | --- | --- |
-| Products, prices, doses, descriptions | `src/lib/products.ts` |
+| Products, prices, doses, descriptions | `src/lib/products.ts` (`form` is `pen`, `vial` or `spray`) |
 | Product photos | `public/products/`, referenced by `image` on each variant in `products.ts` |
 | Bundle deals | `src/lib/bundles.ts` |
 | Multi-buy discounts, free delivery threshold, promo text | `src/lib/promos.ts` |
@@ -42,7 +42,7 @@ npm run lint
 | Homepage hero pen, anatomy pen, vials shown | `HERO_PEN_ID`, `ANATOMY_PEN_ID`, `VIAL_IDS` at the top of `src/app/page.tsx` |
 | Mountain hero, pen anatomy, pen range rows | `src/components/summit/` |
 | Mountain images (three depth layers) | `public/mountain/` (rendered by a script, see DESIGN.md) |
-| See-through pen and vial images | `public/pens/`, `public/vials/`, looked up by `src/lib/pens.ts`. Add a cut-out when you add a product photo, or the site falls back to the original photo |
+| See-through pen, vial and spray images | `public/pens/`, `public/vials/`, `public/sprays/`, looked up by `src/lib/pens.ts`. Add a cut-out when you add a product photo, or the site falls back to the original photo |
 | Smooth scroll, reveals, page transition | `src/engine/` (GSAP + Lenis). Text reveals use `data-split`, blocks use `data-reveal` |
 | Design rules (colours, type, motion) | `DESIGN.md` |
 | Reviews: form, testimonials, owner approval page | `src/components/ReviewForm.tsx`, `src/components/Testimonials.tsx`, `src/app/reviews/` (server actions, `/reviews/manage`), storage in `src/lib/reviews.ts` |

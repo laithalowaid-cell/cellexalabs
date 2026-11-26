@@ -118,6 +118,12 @@ export const VialIcon = (p: P) => (
   </svg>
 );
 
+export const SprayIcon = (p: P) => (
+  <svg {...base(p)}>
+    <path d="M11 2.5h2l.6 5h-3.2l.6-5ZM8 7.5h8M9.5 9h5v2h-5zM8.5 11h7a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-8a1 1 0 0 1 1-1Z" />
+  </svg>
+);
+
 export const PenIcon = (p: P) => (
   <svg {...base(p)}>
     <rect x="3" y="9" width="18" height="6" rx="3" />

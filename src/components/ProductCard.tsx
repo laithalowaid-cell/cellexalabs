@@ -7,7 +7,7 @@ import { useStore } from "@/lib/store";
 import { VialThumb } from "./VialThumb";
 import { ProductImage } from "./ProductImage";
 import { cutout, cutoutSize } from "@/lib/pens";
-import { PlusIcon, CheckIcon, PenIcon, VialIcon } from "./icons";
+import { PlusIcon, CheckIcon, PenIcon, VialIcon, SprayIcon } from "./icons";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart, fmt } = useStore();
@@ -48,10 +48,10 @@ export default function ProductCard({ product }: { product: Product }) {
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={cutout(repImage)}
-                alt={`${product.name} ${product.form === "vial" ? "vial" : "pre-filled pen"}`}
+                alt={`${product.name} ${product.form === "vial" ? "vial" : product.form === "spray" ? "nasal spray" : "pre-filled pen"}`}
                 loading="lazy"
                 {...cutoutSize(cutout(repImage))}
-                className={product.form === "vial" ? "max-h-full w-auto object-contain" : "w-[118%] max-w-none -rotate-[8deg]"}
+                className={product.form === "pen" ? "w-[118%] max-w-none -rotate-[8deg]" : "max-h-full w-auto object-contain"}
               />
             ) : (
               <ProductImage
@@ -66,8 +66,14 @@ export default function ProductCard({ product }: { product: Product }) {
           </div>
         )}
         <span className="absolute right-3 top-3 flex items-center gap-1 rounded-full border border-line bg-white/80 px-2 py-0.5 text-[0.62rem] font-medium text-ink-soft backdrop-blur">
-          {product.form === "vial" ? <VialIcon width={12} height={12} /> : <PenIcon width={12} height={12} />}
-          {product.form === "vial" ? "Vial" : "Pen"}
+          {product.form === "vial" ? (
+            <VialIcon width={12} height={12} />
+          ) : product.form === "spray" ? (
+            <SprayIcon width={12} height={12} />
+          ) : (
+            <PenIcon width={12} height={12} />
+          )}
+          {product.form === "vial" ? "Vial" : product.form === "spray" ? "Spray" : "Pen"}
         </span>
       </div>
 

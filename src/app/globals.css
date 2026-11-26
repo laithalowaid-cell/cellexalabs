@@ -495,6 +495,7 @@ html:not(.motion) .anatomy__part { grid-area: auto; }
 }
 .pdp-scene__product { position: relative; z-index: 14; justify-self: center; width: min(94vw, 960px); margin-bottom: 1.5rem; }
 .pdp-scene__product.is-vial { width: min(46vw, 260px); }
+.pdp-scene__product.is-spray { width: min(30vw, 130px); }
 .pdp-scene__product img { width: 100%; height: auto; position: relative; z-index: 1; }
 .pdp-scene__shadow {
   position: absolute; left: 8%; right: 6%; bottom: -14%; height: 22%;
@@ -509,6 +510,7 @@ html:not(.motion) .anatomy__part { grid-area: auto; }
   .pdp-scene__crumbs { left: 4rem; top: 1.75rem; }
   .pdp-scene__product { justify-self: start; width: min(62vw, 1060px); margin-bottom: 7rem; }
   .pdp-scene__product.is-vial { width: 260px; justify-self: center; }
+  .pdp-scene__product.is-spray { width: 170px; justify-self: center; margin-bottom: 3rem; }
   .pdp-buy { padding: 2rem; }
 }
 @media (max-width: 1023px) {
