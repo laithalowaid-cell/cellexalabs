@@ -10,6 +10,7 @@ const VIAL_CUTOUTS = new Set([
   "mots-c-vial-40mg",
   "pt-141-vial-10mg",
   "retatrutide-vial-60mg",
+  "retatrutide-vial-30mg",
 ]);
 
 /** The see-through version of a product photo, or undefined if there isn't one. */
